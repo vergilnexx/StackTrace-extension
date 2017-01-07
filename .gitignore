@@ -1,0 +1,24 @@
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings
+
+# Build results
+[Ll]ocal/
+[Bb]R/
+[Bb]C/
+[Dd]ev/
+[Pp]ROD/
+[Tt]RUNK/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
