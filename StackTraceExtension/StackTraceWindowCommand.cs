@@ -11,6 +11,9 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.TextManager.Interop;
+using System.Runtime.InteropServices;
 
 namespace StackTraceExtension
 {
@@ -126,7 +129,60 @@ namespace StackTraceExtension
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            throw new NotImplementedException();
+            // TODO: calculate parameters
+            var fileName = @"C:\Users\Sergey\Documents\Visual Studio 2015\Projects\FirstToolWin\FirstToolWin\FirstToolWindowPackage.cs"; 
+            var lineNumber = 44;
+            var columnNumber = 25;
+
+            NavigateTo(fileName, lineNumber, columnNumber);
+        }
+
+
+        public int NavigateTo(string fileName, int lineNumber, int columnNumber = 1)
+        {
+            lineNumber--;
+            columnNumber--;
+            int hr = VSConstants.S_OK;
+            var openDoc = ServiceProvider.GetService(typeof(SVsUIShellOpenDocument)) as IVsUIShellOpenDocument;
+            if (openDoc == null)
+            {
+                return VSConstants.E_UNEXPECTED;
+            }
+
+            Microsoft.VisualStudio.OLE.Interop.IServiceProvider sp = null;
+            IVsUIHierarchy hierarchy = null;
+            uint itemID = 0;
+            IVsWindowFrame frame = null;
+            Guid viewGuid = VSConstants.LOGVIEWID_TextView;
+
+            hr = openDoc.OpenDocumentViaProject(fileName, ref viewGuid, out sp, out hierarchy, out itemID, out frame);
+
+            hr = frame.Show();
+
+            IntPtr viewPtr = IntPtr.Zero;
+            Guid textLinesGuid = typeof(IVsTextLines).GUID;
+            hr = frame.QueryViewInterface(ref textLinesGuid, out viewPtr);
+
+            IVsTextLines textLines = Marshal.GetUniqueObjectForIUnknown(viewPtr) as IVsTextLines;
+
+            var textMgr = ServiceProvider.GetService(typeof(SVsTextManager)) as IVsTextManager;
+            if (textMgr == null)
+            {
+                return VSConstants.E_UNEXPECTED;
+            }
+
+            IVsTextView textView = null;
+            hr = textMgr.GetActiveView(0, textLines, out textView);
+
+            if (textView != null)
+            {
+                if (lineNumber >= 0)
+                {
+                    textView.SetCaretPos(lineNumber, Math.Max(columnNumber, 0));
+                }
+            }
+
+            return VSConstants.S_OK;
         }
     }
 }
