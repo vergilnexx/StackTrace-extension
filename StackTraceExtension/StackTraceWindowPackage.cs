@@ -41,6 +41,7 @@ namespace StackTraceExtension
     [ProvideToolWindow(typeof(StackTraceWindow), MultiInstances = true)]
     [Guid(StackTraceWindowPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [ProvideBindingPath]
     public sealed class StackTraceWindowPackage : Package
     {
         /// <summary>
