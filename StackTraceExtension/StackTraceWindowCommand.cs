@@ -11,6 +11,11 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.TextManager.Interop;
+using System.Runtime.InteropServices;
+using StackTraceExtension.Helpers;
+using Parser.Enums;
 
 namespace StackTraceExtension
 {
@@ -47,6 +52,7 @@ namespace StackTraceExtension
             }
 
             this.package = package;
+            Factory.ServiceProvider = package;
 
             OleMenuCommandService commandService = this.ServiceProvider.GetService(typeof(IMenuCommandService)) as OleMenuCommandService;
             if (commandService != null)
@@ -102,31 +108,147 @@ namespace StackTraceExtension
                 throw new NotSupportedException("Cannot create tool window");
             }
 
-            GetFormatStack(window.Control.StackBox);
+            FillStack(window.Control.StackBox);
             
             IVsWindowFrame windowFrame = (IVsWindowFrame)window.Frame;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(windowFrame.Show());
+            ErrorHandler.ThrowOnFailure(windowFrame.Show());
         }
-
-        private void GetFormatStack(TextBlock stackTextBlock)
+        
+        private void FillStack(TextBlock stackTextBlock)
         {
             var clipboardText = Clipboard.GetText();
             if (!string.IsNullOrEmpty(clipboardText))
             {
+                var parser = Factory.GetParser();
+                var output = parser.ParseStack(clipboardText);
+
                 stackTextBlock.Inlines.Clear();
-                stackTextBlock.Inlines.Add(clipboardText);
-                var hyperlink = new System.Windows.Documents.Hyperlink {
-                    NavigateUri = new Uri("https://www.google.ru")
-                };
-                hyperlink.Inlines.Add(clipboardText);
-                hyperlink.RequestNavigate += Hyperlink_RequestNavigate;
-                stackTextBlock.Inlines.Add(hyperlink);
+                foreach (var item in output)
+                {
+                    var text = item.Item1;
+                    var type = item.Item2;
+                    switch (type)
+                    {
+                        case InformationType.Text:
+                            stackTextBlock.Inlines.Add(text);
+                            break;
+                        case InformationType.Method:
+                        case InformationType.File:
+                            var hyperlink = new System.Windows.Documents.Hyperlink
+                            {
+                                NavigateUri = new Uri("https://www.google.ru"),
+                                DataContext = type // saving type of link
+                            };
+                            hyperlink.Inlines.Add(text);
+                            hyperlink.RequestNavigate += Hyperlink_RequestNavigate;
+                            stackTextBlock.Inlines.Add(hyperlink);
+                            break;
+                    }                 
+                }                
             }
         }
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            throw new NotImplementedException();
+            var link = sender as System.Windows.Documents.Hyperlink;
+            var type = link.DataContext as InformationType?;
+
+            var fileName = string.Empty;
+            var lineNumber = 0;
+            var columnNumber = 0;
+
+            var linkText = ((System.Windows.Documents.Run)link.Inlines.FirstInline).Text;
+            var parser = Factory.GetParser();
+            switch (type)
+            {
+                case InformationType.File:
+                    var solution = ServiceProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+                    string solutionPath, solutionFile, suoFile;                    
+                    solution.GetSolutionInfo(out solutionPath, out solutionFile, out suoFile);
+                    if(string.IsNullOrEmpty(solutionPath))
+                    {
+                        return;
+                    }
+                    var tempString = solutionPath;
+                    tempString = tempString.Remove(tempString.Length - 1);
+                    tempString = tempString.Substring(tempString.LastIndexOf("\\") + 1, tempString.Length - tempString.LastIndexOf("\\") - 1);
+
+                    var relationPath = linkText.Remove(0, linkText.LastIndexOf(tempString));
+                    relationPath = relationPath.Replace(tempString, string.Empty);
+                    relationPath = relationPath.Remove(0, 1); // delete slash
+
+                    var lineNumberString = parser.GetLineNumberString(relationPath);
+                    var startIndexPrefixLineNumberRelationPath = relationPath.LastIndexOf(lineNumberString);
+                    relationPath = relationPath.Remove(startIndexPrefixLineNumberRelationPath, relationPath.Length - startIndexPrefixLineNumberRelationPath); // delete line number text
+
+                    fileName = solutionPath + relationPath;
+                    lineNumber = parser.GetLineNumber(linkText);
+                    columnNumber = 0;
+
+                    NavigateTo(fileName, lineNumber, columnNumber);
+                    break;
+                case InformationType.Method:
+                    linkText = linkText.Replace("at ", string.Empty);   // delete en prefix
+                    linkText = linkText.Replace("в ", string.Empty);    // delete ru prefix
+                    linkText = linkText.Remove(linkText.Length - 1);    // delete postfix
+
+                    var projects = ProjectUtilities.GetProjectsOfCurrentSelections();
+                    Factory.GetBackgroundScanner().StopIfRunning(blockUntilDone: true);
+
+                    Factory.GetBackgroundScanner().Stopped += (source, arg) => NavigateTo(fileName, lineNumber, columnNumber);
+
+                    Factory.GetBackgroundScanner().Start(projects, "FirstToolWindowPackage");
+
+                    break;
+            }            
+        }
+
+
+        public int NavigateTo(string fileName, int lineNumber, int columnNumber = 1)
+        {
+            lineNumber--;
+            columnNumber--;
+            int hr = VSConstants.S_OK;
+            var openDoc = ServiceProvider.GetService(typeof(SVsUIShellOpenDocument)) as IVsUIShellOpenDocument;
+            if (openDoc == null)
+            {
+                return VSConstants.E_UNEXPECTED;
+            }
+
+            Microsoft.VisualStudio.OLE.Interop.IServiceProvider sp = null;
+            IVsUIHierarchy hierarchy = null;
+            uint itemID = 0;
+            IVsWindowFrame frame = null;
+            Guid viewGuid = VSConstants.LOGVIEWID_TextView;
+
+            hr = openDoc.OpenDocumentViaProject(fileName, ref viewGuid, out sp, out hierarchy, out itemID, out frame);
+
+            hr = frame.Show();
+
+            IntPtr viewPtr = IntPtr.Zero;
+            Guid textLinesGuid = typeof(IVsTextLines).GUID;
+            hr = frame.QueryViewInterface(ref textLinesGuid, out viewPtr);
+
+            IVsTextLines textLines = Marshal.GetUniqueObjectForIUnknown(viewPtr) as IVsTextLines;
+
+            var textMgr = ServiceProvider.GetService(typeof(SVsTextManager)) as IVsTextManager;
+            if (textMgr == null)
+            {
+                return VSConstants.E_UNEXPECTED;
+            }
+
+            IVsTextView textView = null;
+            hr = textMgr.GetActiveView(0, textLines, out textView);
+
+            if (textView != null)
+            {
+                if (lineNumber >= 0)
+                {
+                    textView.SetCaretPos(lineNumber, Math.Max(columnNumber, 0));
+                }
+            }
+
+            return VSConstants.S_OK;
         }
     }
 }
