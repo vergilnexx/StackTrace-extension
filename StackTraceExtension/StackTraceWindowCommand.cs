@@ -129,10 +129,10 @@ namespace StackTraceExtension
                     var type = item.Item2;
                     switch (type)
                     {
+                        case InformationType.Method: // TODO: as hyperlink
                         case InformationType.Text:
                             stackTextBlock.Inlines.Add(text);
-                            break;
-                        case InformationType.Method:
+                            break;                        
                         case InformationType.File:
                             var hyperlink = new System.Windows.Documents.Hyperlink
                             {
