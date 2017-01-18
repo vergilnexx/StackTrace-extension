@@ -9,7 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="100">
             <TextBlock x:Name="tbStack" TextWrapping="Wrap" Text=""/>
         </StackPanel>
     </Grid>
