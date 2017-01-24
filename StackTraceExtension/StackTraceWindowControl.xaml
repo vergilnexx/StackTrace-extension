@@ -9,8 +9,9 @@
              d:DesignHeight="300" d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="100">
-            <TextBlock x:Name="tbStack" TextWrapping="Wrap" Text=""/>
-        </StackPanel>
+        <ScrollViewer>
+            <TextBlock x:Name="tbStack" TextWrapping="Wrap" Text="" Margin="0,0,65,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Courier New" 
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+        </ScrollViewer>
     </Grid>
 </UserControl>
