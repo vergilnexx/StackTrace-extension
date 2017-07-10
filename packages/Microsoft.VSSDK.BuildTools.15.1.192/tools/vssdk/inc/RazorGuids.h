@@ -20,6 +20,10 @@
 // Guid of the App Thumbnail icon
 #define guidAppThumbnailIcon { 0xa879711, 0xd2f9, 0x4312, { 0x93, 0x12, 0xf7, 0xd7, 0x3c, 0xb6, 0x6a, 0x9 } }
 
+// This must match values in HubExtensions/UIConstants.cs
+// and intellitrace/Includes/PackageGuids.h
+#define guidIntelliTraceHubExtensionCmdSet { 0x11A58127, 0xDD59, 0x4506, { 0x83, 0x9B, 0xF6, 0xF6, 0x27, 0x61, 0x15, 0x21 } }
+
 //
 /////////////////////////////////////////////////////////////////////////////
 

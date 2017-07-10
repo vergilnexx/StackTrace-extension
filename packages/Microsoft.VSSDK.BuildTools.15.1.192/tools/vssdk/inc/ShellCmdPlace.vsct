@@ -180,6 +180,15 @@
           <CommandName>Error List</CommandName>
         </Strings>
       </Menu>
+      <!-- (new) Find All References tool window toolbar -->
+      <Menu guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF" priority="0x0000" type="ToolWindowToolbar">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+        <CommandFlag>AlwaysCreate</CommandFlag>
+        <Strings>
+          <ButtonText>Find All References Window Toolbar</ButtonText>
+          <CommandName>Find All References Window Toolbar</CommandName>
+        </Strings>
+      </Menu>
       <!-- Make conditional for the items in this block -->
       <!-- #ifndef VBA_MENUS     -->
       <Menu Condition="!Defined(VBA_MENUS)" guid="guidSHLMainMenu" id="IDM_VS_TOOL_BUILD" priority="0x0000" type="Toolbar">
@@ -517,6 +526,12 @@
         <Strings>
           <ButtonText>&amp;Find and Replace</ButtonText>
           <CommandName>&amp;Find and Replace</CommandName>
+        </Strings>
+      </Menu>
+      <Menu guid="guidSHLMainMenu" id="IDM_VS_EDITOR_GOTO_MENU" priority="0x0050" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_GOTO"/>
+        <Strings>
+          <ButtonText>&amp;Go To</ButtonText>
         </Strings>
       </Menu>
       <Menu guid="guidSHLMainMenu" id="IDM_VS_CSCD_MNUDES" priority="0xDD00" type="Menu">
@@ -909,6 +924,12 @@
           <ButtonText>Find Symbol</ButtonText>
         </Strings>
       </Menu>
+      <Menu guid="guidSHLMainMenu" id="IDM_VS_CTXT_FINDALLREF" priority="0x0000" type="Context">
+        <Parent guid="guidSHLMainMenu" id="0"/>
+        <Strings>
+          <ButtonText>Find All References</ButtonText>
+        </Strings>
+      </Menu>
       <Menu guid="guidSHLMainMenu" id="IDM_VS_CTXT_CALLBROWSER" priority="0x0000" type="Context">
         <Parent guid="guidSHLMainMenu" id="0"/>
         <Strings>
@@ -956,6 +977,15 @@
       </Menu>
 
       <!--  -->
+      <Menu guid="guidStdEditor" id="IDM_VS_CODEWIN_SNIPPET_ROOT" priority="0x0100" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPET_ROOT"/>
+        <Strings>
+          <ButtonText>Snippet</ButtonText>
+          <CommandName>&amp;Snippet</CommandName>
+        </Strings>
+      </Menu>
+
+      <!--  -->
       <Menu guid="guidStdEditor" id="IDM_VS_EDITOR_CSCD_OUTLINING_MENU" priority="0x0F00" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ADVANCED"/>
         <Strings>
@@ -972,7 +1002,7 @@
       <Combo guid="guidVSStd14CmdID" id="cmdidErrorContextComboList" priority="0x0000" defaultWidth="150" type="DropDownCombo" idCommandList="cmdidErrorContextComboGetList">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_FILTERLISTTOGROUP"/>
         <Strings>
-          <ButtonText>Show issues contained by</ButtonText>
+          <ButtonText>Show items contained by</ButtonText>
         </Strings>
       </Combo>
 
@@ -980,6 +1010,14 @@
         <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_BUILDGROUP"/>
         <Strings>
           <ButtonText>Show issues generated</ButtonText>
+        </Strings>
+      </Combo>
+      <!-- Grouping combo in new FAR -->
+      <Combo guid="guidVSStd15CmdID" id="cmdidFindAllRefPresetGroupingComboList" priority="0x0000" defaultWidth="175" type="DropDownCombo" idCommandList="cmdidFindAllRefPresetGroupingComboGetList">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDALLREF_PRESETGROUPINGS"/>
+        <CommandFlag>IconAndText</CommandFlag>
+        <Strings>
+          <ButtonText>Group by:</ButtonText>
         </Strings>
       </Combo>
     </Combos>
@@ -1392,6 +1430,12 @@
       </Group>
       <!--  -->
       <!--     // Task List default toolbar -->
+      <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_FILTERLISTTOGROUP" priority="0x0000">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_TASKLIST"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_CLEARFILTERGROUP" priority="0x0400">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_TASKLIST"/>
+      </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_PROVIDERLIST" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_TASKLIST"/>
       </Group>
@@ -1403,6 +1447,24 @@
       <Group guid="guidSHLMainMenu" id="IDG_VS_USERTASKS_EDIT" priority="0x0200">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_USERTASKS"/>
       </Group>
+      <!--  -->
+      <!-- // (new) Find All References toolbar  -->
+      <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_FILTERLISTTOGROUP" priority="0x0000">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_FINDALLREF_COMMON" priority="0x0200">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_CLEARFILTERGROUP" priority="0x0400">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_FINDALLREF_PRESETGROUPINGS" priority="0x0500">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_FINDALLREF_LOCKWINGROUP" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+      </Group>
+
       <!--  -->
       <!--     // Error List toolbar -->
       <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_FILTERLISTTOGROUP" priority="0x0000">
@@ -1424,9 +1486,6 @@
         <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_ERRORLIST"/>
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_BUILDGROUP" priority="0x0500">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_ERRORLIST"/>
-      </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_TOGGLEANALYSISGROUP" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_ERRORLIST"/>
       </Group>
       
@@ -1517,8 +1576,11 @@
       <Group guid="guidSHLMainMenu" id="IDG_VS_EDIT_SELECT" priority="0x0A00">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_EDIT"/>
       </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_EDIT_GOTO" priority="0xA000">
+      <Group guid="guidSHLMainMenu" id="IDG_VS_EDIT_GOTO" priority="0x0050">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_EDIT"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_GOTO" priority="0x0050">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_EDITOR_GOTO_MENU"/>
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_EDIT_PASTE" priority="0x0080">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_EDITOR_PASTE_MENU"/>
@@ -1742,6 +1804,10 @@
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_TOOLS_OPTIONS" priority="0xFFFF">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      </Group>
+      <!-- Start the extensibility menus at the top of the tools menu -->
+      <Group guid="guidSHLMainMenu" id="IDG_VS_TOOLS_EXTENSIBILITY" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_TOOLS_OTHER2" priority="0xFF40">
@@ -1985,19 +2051,16 @@
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_LANGUAGE" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPETS" priority="0x0170">
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_NAVIGATETOLOCATION" priority="0x0110">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_NAVIGATETOLOCATION" priority="0x0200">
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP" priority="0x0300">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_BP" priority="0x0300">
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_WATCH" priority="0x0350">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_WATCH" priority="0x0330">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
-      </Group>
-      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP" priority="0x0350">
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPET_ROOT" priority="0x0375">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_TEXTEDIT" priority="0x0400">
@@ -2008,6 +2071,10 @@
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEDEFVIEW" priority="0x0800">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
+      <!--      -->
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPETS" priority="0x0100">
+        <Parent guid="guidStdEditor" id="IDM_VS_CODEWIN_SNIPPET_ROOT"/>
       </Group>
       <!--      -->
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_OPENURL" priority="0x0100">
@@ -2395,6 +2462,13 @@
           <CommandName>Show &amp;Columns</CommandName>
         </Strings>
       </Menu>
+      <Menu guid="guidSHLMainMenu" id="IDM_VS_CSCD_TASKLIST_GROUPS" priority="0x0300" type="Context">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST"/>
+        <Strings>
+          <ButtonText>Grouping</ButtonText>
+          <CommandName>&amp;Grouping</CommandName>
+        </Strings>
+      </Menu>
       <!--  -->
       <!--     // context menus -->
       <Menu guid="guidSHLMainMenu" id="IDM_VS_CTXT_TASKLIST" priority="0x0000" type="Context">
@@ -2433,6 +2507,9 @@
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_COLUMNS" priority="0x0020">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CSCD_TASKLIST_COLUMNS"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS" priority="0x0030">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CSCD_TASKLIST_GROUPS"/>
       </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_SORT_COLUMN" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CSCD_TASKLIST_SORT"/>
@@ -2475,6 +2552,9 @@
       <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST"/>
     </CommandPlacement>
     <CommandPlacement guid="guidSHLMainMenu" id="IDM_VS_CSCD_TASKLIST_COLUMNS" priority="0x0200">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidSHLMainMenu" id="IDM_VS_CSCD_TASKLIST_GROUPS" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST"/>
     </CommandPlacement>
     <!--  -->
@@ -2654,7 +2734,7 @@
     </CommandPlacement>
     <!--  -->
     <CommandPlacement guid="guidVSStd97" id="cmdidGoto" priority="0x0100">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_GOTO"/>
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_GOTO"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidGotoDefn" priority="0x0200">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_GOTO"/>
@@ -3733,7 +3813,7 @@
       <Parent guid="guidSHLMainMenu" id="IDG_VS_VIEW_DEV_WINDOWS"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd2K" id="cmdidStartPage" priority="0x0300">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_VIEW_DEV_WINDOWS"/>
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_FILE_FILE"/>
     </CommandPlacement>
     <!--  -->
     <CommandPlacement guid="guidVSStd97" id="cmdidCommandWindow" priority="0x0100">
@@ -4087,7 +4167,7 @@
     <!--  -->
     <!--   // Tools Menu Commands -->
     <CommandPlacement guid="guidVSStd10" id="cmdidExtensionManager" priority="0x8010">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_OTHER2"/>
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_EXTENSIBILITY"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd10" id="cmdidShellForceGC" priority="0x9000">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_OTHER2"/>
@@ -4528,15 +4608,15 @@
     <CommandPlacement guid="guidVSStd2K" id="cmdidNamedBackreference" priority="0x0500">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDREGEXNORM3"/>
     </CommandPlacement>
-    <CommandPlacement guid="guidVSStd2K" id="cmdidSpaceOrTabMap" priority="0x0100">
+    <!--<CommandPlacement guid="guidVSStd2K" id="cmdidSpaceOrTabMap" priority="0x0100">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDREGEXNORM4"/>
-    </CommandPlacement>
-    <CommandPlacement guid="guidVSStd2K" id="cmdidNumericCharacterMap" priority="0x0300">
+    </CommandPlacement>-->
+    <!--<CommandPlacement guid="guidVSStd2K" id="cmdidNumericCharacterMap" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDREGEXNORM4"/>
-    </CommandPlacement>
-    <CommandPlacement guid="guidVSStd2K" id="cmdidCPPIdentifierMap" priority="0x0400">
+    </CommandPlacement>-->
+    <!--<CommandPlacement guid="guidVSStd2K" id="cmdidCPPIdentifierMap" priority="0x0400">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDREGEXNORM4"/>
-    </CommandPlacement>
+    </CommandPlacement>-->
     <CommandPlacement guid="guidVSStd2K" id="cmdidQuotedStringMap" priority="0x0500">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDREGEXNORM4"/>
     </CommandPlacement>
@@ -4596,6 +4676,17 @@
       <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_OBJSEARCH"/>
     </CommandPlacement>
     <!--   //guidSHLMainMenu:IDG_VS_OBJSEARCH_SORTING,                    guidSHLMainMenu:IDM_VS_CTXT_OBJSEARCH,                0x0600; -->
+    <!--  -->
+    <!--     // Find All References context menu -->
+    <CommandPlacement guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST" priority="0x0200">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FINDALLREF"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidSHLMainMenu" id="IDG_VS_EDIT_CUTCOPY" priority="0x0300">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FINDALLREF"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidSHLMainMenu" id="IDG_VS_OBJSEARCH_NAVIGATE2" priority="0x0400">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_FINDALLREF"/>
+    </CommandPlacement>
     <!--  -->
     <!--   // Call Browser context menu -->
     <CommandPlacement guid="guidSHLMainMenu" id="IDG_VS_CALLBROWSER_TYPE" priority="0x0100">
@@ -4969,6 +5060,16 @@
     <!--   //********************************************************************************************- -->
     <!--   //guidVSStd2K:cmdidFSRSortByBestMatch,                           guidSHLMainMenu:IDG_VS_OBJSEARCH_SORTING,             0x0100; -->
     <!--   //guidVSStd2K:cmdidFSRSortObjectsAlpha,                          guidSHLMainMenu:IDG_VS_OBJSEARCH_SORTING,             0x0200; -->
+    <!--    -->
+    <!--   //********************************************************************************************- -->
+    <!--   // IDG_VS_FINDALLREF_COMMON commands  -->
+    <!--   //********************************************************************************************- -->
+    <CommandPlacement guid="guidVSStd97" id="cmdidCopy" priority="0x0100">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDALLREF_COMMON"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd15" id="cmdidFindAllRefLockWindow" priority="0x0100">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_FINDALLREF_LOCKWINGROUP"/>
+    </CommandPlacement>
     <!--    -->
     <!--   //********************************************************************************************* -->
     <!--   // Code Definition View context menu commands -->
@@ -5403,6 +5504,81 @@
       </CommandPlacement>
       <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnToggle25" priority="0x1900">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_COLUMNS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup1" priority="0x204">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup2" priority="0x208">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup3" priority="0x20c">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup4" priority="0x210">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup5" priority="0x214">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup6" priority="0x218">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup7" priority="0x21c">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup8" priority="0x220">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup9" priority="0x224">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup10" priority="0x228">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup11" priority="0x22c">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup12" priority="0x230">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup13" priority="0x234">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup14" priority="0x238">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup15" priority="0x23c">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup16" priority="0x240">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup17" priority="0x244">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup18" priority="0x248">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup19" priority="0x24c">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup20" priority="0x250">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup21" priority="0x254">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup22" priority="0x258">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup23" priority="0x25c">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup24" priority="0x260">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
+      </CommandPlacement>
+      <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup25" priority="0x264">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_GROUPS"/>
       </CommandPlacement>
       <CommandPlacement guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnSort1" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_TASKLIST_SORT"/>
@@ -5860,9 +6036,6 @@
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd14" id="cmdidErrorListClearFilters" priority="0x0100">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_CLEARFILTERGROUP"/>
-    </CommandPlacement>
-    <CommandPlacement guid="guidVSStd14" id="cmdidErrorListToggleAnalysis" priority="0x0100">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_ERRORLIST_TOGGLEANALYSISGROUP"/>
     </CommandPlacement>
 
     <!--  -->
@@ -6495,6 +6668,11 @@
       <IDSymbol name="cmdidErrorContextComboGetList" value="0x1F" />
       <IDSymbol name="cmdidErrorBuildContextComboList" value="0x28" />
       <IDSymbol name="cmdidErrorBuildContextComboGetList" value="0x29" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidVSStd15CmdID" value="{712C6C80-883B-4AAD-B430-BBCA5256FA9D}">
+      <IDSymbol name="cmdidFindAllRefPresetGroupingComboList" value="0x2A" />
+      <IDSymbol name="cmdidFindAllRefPresetGroupingComboGetList" value="0x2B" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

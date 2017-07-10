@@ -42,6 +42,13 @@
 #define IDM_MANAGEDMEMORYANALYSIS_SUBMENU               0x0222
 #define IDG_MANAGEDMEMORYANALYSIS_SUBMENU               0x0223
 
+// These values must be synced with intellitrace\Includes\PackageCommandIds.h
+#define IDM_IntelliTraceHubDetailsViewFilterContextMenu		0x0225
+#define IDM_IntelliTraceHubDetailsViewFilterCategorySubMenu	0x0226
+#define IDG_IntelliTraceHubDetailsViewFilterCategoryEventsGroup 0x0227
+#define IDG_IntelliTraceHubDetailsViewFilterCategorySubMenuGroup       0x0228
+
+
 // TODO: re-enabled this constant
 #define cmdidClearAllTips                               0x00000101
 #define cmdidRazorThreadWindowToolbarExpandStacks		0x00000103
@@ -83,6 +90,12 @@
 #define cmdidRazorThreadWindowToolbarShowCurProcOnly    0x0000034C
 #define cmdidRazorDisassemblyWindowToolbarAddressCombo  0x00000360
 #define cmdidLaunchManagedMemoryAnalysis                0x00000600
+
+// This must match values in HubExtensions/UIConstants.cs
+#define cmdidIntelliTraceHubDetailsViewFilterCategoryTopLevelBase      0x00000700
+#define cmdidIntelliTraceHubDetailsViewFilterCategoryTopLevelLast      0x0000072A // excluded
+#define cmdidIntelliTraceHubDetailsViewFilterCategorySecondLevelBase   0x0000072A
+#define cmdidIntelliTraceHubDetailsViewFilterCategorySecondLevelLast   0x00000750 // excluded
 
 // Bitmaps
 #define bmpShieldIcon 1

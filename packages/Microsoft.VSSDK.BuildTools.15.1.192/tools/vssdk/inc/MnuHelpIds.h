@@ -126,19 +126,6 @@
 #define icmdHelpF1AsyncComplete     0x0300
 
 ///////////////////////////////////////////////////////////////////////////////
-//Tool window Bitmap IDs
-
-#define bmpidVsHelpContents           1
-#define bmpidVsHelpIndex              2
-#define bmpidVsHelpIndexResults       3
-#define bmpidFavWindow                4
-#define bmpidHowDoIWindow             5
-#define bmpidSearchWindow             6
-#define bmpidDynamicHelpWindow        7
-#define bmpidWebBrowserWindow         8
-
-
-///////////////////////////////////////////////////////////////////////////////
 //Menu cmds Bitmap IDs
 
 #define bmpidVsHelpContentsCmd              1

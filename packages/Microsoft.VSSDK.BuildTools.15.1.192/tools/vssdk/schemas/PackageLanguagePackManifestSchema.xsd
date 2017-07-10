@@ -13,22 +13,24 @@
   
   <xs:include schemaLocation="PackageManifestSchema.Metadata.xsd" />
   <xs:include schemaLocation="PackageManifestSchema.Installation.xsd" />
-  <xs:include schemaLocation="PackageManifestSchema.Assets.xsd" />
   <xs:include schemaLocation="PackageManifestSchema.Dependencies.xsd" />
+  <xs:include schemaLocation="PackageManifestSchema.Assets.xsd" />
+  <xs:include schemaLocation="PackageManifestSchema.Prerequisites.xsd" />
 
-  <xs:element name="PackageManifest">
+  <xs:element name="PackageLanguagePackManifest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Metadata" type="self:Metadata" minOccurs="1" maxOccurs="1" />
+        <xs:element name="Metadata" type="self:MetadataInfo" minOccurs="1" maxOccurs="1" />
         <xs:element name="Installation" type="self:Installation" minOccurs="0" maxOccurs="1" />
         <xs:element name="Dependencies" minOccurs="0" maxOccurs="1">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Dependency" type="self:Dependency" minOccurs="0" maxOccurs="unbounded" />
+              <xs:element name="Dependency" type="self:DependencyInfo" minOccurs="0" maxOccurs="unbounded" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="Assets" type="self:Assets" minOccurs="0" maxOccurs="1" />
+        <xs:element name="Prerequisites" type="self:Prerequisites" minOccurs="0" maxOccurs="1" />
         <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
       <xs:attribute name="Version" type="xs:string" use="required">

@@ -1354,7 +1354,13 @@
       <Group guid="guidSHLMainMenu" id="IDG_VS_CTXT_APPDESIGNERFOLDER_OPEN" priority="0x0100">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_APPDESIGNERFOLDER"/>
       </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CTXT_FOLDER_ADD" priority="0x0150">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_APPDESIGNERFOLDER"/>
+      </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_CTXT_PROJWIN_SCOPE" priority="0x0200">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_APPDESIGNERFOLDER"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CTXT_FOLDER_EXPLORE" priority="0x0580">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_APPDESIGNERFOLDER"/>
       </Group>
       <!-- Make conditional for the items in this block -->
@@ -2558,7 +2564,7 @@
     <CommandPlacement guid="guidVSStd2K" id="ECMD_HIDESNIPPETHIGHLIGHTING" priority="0x0820">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPETS" />
     </CommandPlacement>
-    <CommandPlacement guid="guidVSStd2K" id="ECMD_SURROUNDWITH" priority="0x0900">
+    <CommandPlacement guid="guidVSStd2K" id="ECMD_SURROUNDWITH" priority="0x0700">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPETS"/>
     </CommandPlacement>
     <!--         //guidVSStd2K:ECMD_CREATESNIPPET           guidSHLMainMenu:IDG_VS_CODEWIN_SNIPPETS,               0x0A00; -->
@@ -2990,7 +2996,13 @@
     <CommandPlacement guid="guidVSStd2K" id="cmdidExploreFolderInWindows" priority="0x0100">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_SOLUTION_EXPLORE"/>
     </CommandPlacement>
-    <CommandPlacement guid="guidVSStd97" id="cmdidPropSheetOrProperties" priority="0x0100">
+    <CommandPlacement guid="guidVSStd15" id="cmdidEnableDPLSolution" priority="0x0100">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_SOLUTION_PROPERTIES"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd15" id="cmdidDisableDPLSolution" priority="0x0200">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_SOLUTION_PROPERTIES"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd97" id="cmdidPropSheetOrProperties" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CTXT_SOLUTION_PROPERTIES"/>
     </CommandPlacement>
     <!--  -->
@@ -4147,6 +4159,14 @@
       <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_OBJSEARCH"/>
     </CommandPlacement>
     <!--  -->
+    <!--         //********************************************************************************************** -->
+    <!--         // Find All References Window toolbar groups  -->
+    <!--         // IDM_VS_TOOL_FINDALLREF -->
+    <!--         //********************************************************************************************** -->
+    <CommandPlacement guid="guidSHLMainMenu" id="IDG_VS_OBJSEARCH_NAVIGATE2" priority="0x0300">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_FINDALLREF"/>
+    </CommandPlacement>
+    <!--  -->
     <!--         //********************************************************************************************- -->
     <!--         // IDG_VS_OBJSEARCH_BROWSE commands  -->
     <!--         //********************************************************************************************- -->
@@ -4459,8 +4479,6 @@
     <!-- //guidVSStd2K:ECMD_FINDPREV,                  GUID_TextEditorFactory, GUID_TextEditorFactory,                    ; -->
     <!-- //guidVSStd2K:ECMD_FINDPREVWORD,              GUID_TextEditorFactory, GUID_TextEditorFactory,                    ; -->
     <!-- //guidVSStd2K:ECMD_FINDAGAIN,                 GUID_TextEditorFactory, GUID_TextEditorFactory,                    ; -->
-    <KeyBinding guid="guidVSStd2K" id="ECMD_TRANSPOSECHAR" editor="GUID_TextEditorFactory" key1="T" mod1="Control"/>
-    <KeyBinding guid="guidVSStd2K" id="ECMD_TRANSPOSEWORD" editor="GUID_TextEditorFactory" key1="T" mod1="Control Shift"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_TRANSPOSELINE" editor="GUID_TextEditorFactory" key1="T" mod1="Alt Shift"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_SELECTCURRENTWORD" editor="GUID_TextEditorFactory" key1="W" mod1="Control"/>
     <!-- //guidVSStd2K:ECMD_SELTITLECASE,              GUID_TextEditorFactory, GUID_TextEditorFactory,                    ; -->
@@ -4523,6 +4541,7 @@
       cmdidShowQuickFixesForPosition (global one) is placed into the editor context menu (and so will help users to learn about Ctrl+. shortcut), 
       while hitting Ctrl+. will always invoke cmdidShowQuickFixes (text editor scoped one) as more specific of them. -->
     <KeyBinding guid="guidVSStd14" id="cmdidShowQuickFixes" editor="GUID_TextEditorFactory" key1="VK_OEM_PERIOD" mod1="Control"/>
+    <KeyBinding guid="guidVSStd14" id="cmdidShowQuickFixes" editor="GUID_TextEditorFactory" key1="VK_RETURN" mod1="Alt" />
     <KeyBinding guid="guidVSStd14" id="cmdidShowQuickFixesForPosition" editor="guidVSStd97" key1="VK_OEM_PERIOD" mod1="Control"/>
     <KeyBinding guid="guidVSStd14" id="cmdidShowQuickFixesForPosition2" editor="GUID_TextEditorFactory" key1="VK_OEM_5" mod1="Control" key2="VK_OEM_PERIOD" mod2="Control"/>
     <!-- -->

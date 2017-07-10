@@ -113,10 +113,10 @@
 
 #define VK_OEM_1          0xBA   // ;: for USA
 #define VK_OEM_5          0xDC   // |\ for USA
-#define VK_OEM_PLUS       0xBB   // '+' any country
-#define VK_OEM_COMMA      0xBC   // ',' any country
-#define VK_OEM_MINUS      0xBD   // '-' any country
-#define VK_OEM_PERIOD     0xBE   // '.' any country
+#define VK_OEM_PLUS       0xBB   // '+' any country/region
+#define VK_OEM_COMMA      0xBC   // ',' any country/region
+#define VK_OEM_MINUS      0xBD   // '-' any country/region
+#define VK_OEM_PERIOD     0xBE   // '.' any country/region
 #define VK_OEM_7          0xDE   // '" for USA
 
 #define VK_PROCESSKEY     0xE5

@@ -85,6 +85,11 @@
   DEFINE_GUID(CMDSETID_StandardCommandSet14,
     0x4c7763bf, 0x5faf, 0x4264, 0xa3, 0x66, 0xb7, 0xe1, 0xf2, 0x7b, 0xa9, 0x58);
 
+  // new command set for Dev15
+  // {712C6C80-883B-4AAD-B430-BBCA5256FA9D}
+  DEFINE_GUID(CMDSETID_StandardCommandSet15,
+    0x712c6c80, 0x883b, 0x4aad, 0xb4, 0x30, 0xbb, 0xca, 0x52, 0x56, 0xfa, 0x9d);
+
   // {489EE5BF-F001-41c9-91C7-6E89D9C111AD}
   DEFINE_GUID(CMDSETID_EzMDI, 
     0x489ee5bf, 0xf001, 0x41c9, 0x91, 0xc7, 0x6e, 0x89, 0xd9, 0xc1, 0x11, 0xad);
@@ -266,6 +271,10 @@
   DEFINE_GUID(guidAppidSupportsConnectToServer, 
     0x9bf70368, 0xf5f7, 0x4ddf, 0x8c, 0xd2, 0xfb, 0x27, 0xfb, 0xe0, 0xbd, 0x9c);
 
+  // SQL Server Object Explorer command ID guid
+  // {03f46784-2f90-4122-91ec-72ff9e11d9a3}
+  DEFINE_GUID(guidSqlObjectExplorerCmdSet,
+	  0x03f46784, 0x2f90, 0x4122, 0x91, 0xec, 0x72, 0xff, 0x9e, 0x11, 0xd9, 0xa3);
 
 ///////////////////////////////////////////////
 //
@@ -320,6 +329,8 @@
   #define CMDSETID_StandardCommandSet12 {0x2A8866DC, 0x7BDE, 0x4dc8, {0xA3, 0x60, 0xA6, 0x06, 0x79, 0x53, 0x43, 0x84}};
   // Guid for Standard Shell Commands (Dev14 set)
   #define CMDSETID_StandardCommandSet14 {0x4c7763bf, 0x5faf, 0x4264, {0xa3, 0x66, 0xb7, 0xe1, 0xf2, 0x7b, 0xa9, 0x58}};
+  // Guid for Standard Shell Commands (Dev15 set)
+  #define CMDSETID_StandardCommandSet15 {0x712c6c80, 0x883b, 0x4aad, {0xb4, 0x30, 0xbb, 0xca, 0x52, 0x56, 0xfa, 0x9d}};
   // Guid for the EzMDI file list menu private command set
   #define CMDSETID_EzMDI {0x489ee5bf, 0xf001, 0x41c9, {0x91, 0xc7, 0x6e, 0x89, 0xd9, 0xc1, 0x11, 0xad}}
   // Guid for the Emacs editor emulation command group
@@ -379,6 +390,8 @@
   #define guid_SE_MenuGroup { 0x74d21310, 0x2aee, 0x11d1, { 0x8b, 0xfb, 0x0, 0xa0, 0xc9, 0xf, 0x26, 0xf7 } }
   // Server Explorer command ID guid {74D21311-2AEE-11d1-8BFB-00A0C90F26F7}
   #define guid_SE_CommandID { 0x74d21311, 0x2aee, 0x11d1, { 0x8b, 0xfb, 0x0, 0xa0, 0xc9, 0xf, 0x26, 0xf7 } }
+  // SQL Server Object Explorer command ID guid {03f46784-2f90-4122-91ec-72ff9e11d9a3}
+  #define guidSqlObjectExplorerCmdSet { 0x03f46784, 0x2f90, 0x4122, {0x91, 0xec, 0x72, 0xff, 0x9e, 0x11, 0xd9, 0xa3 } }
   // UI Context GUID to enable the Tools->Connect To Server command {9BF70368-F5F7-4ddf-8CD2-FB27FBE0BD9C}
   #define guidAppidSupportsConnectToServer { 0x9bf70368, 0xf5f7, 0x4ddf, { 0x8c, 0xd2, 0xfb, 0x27, 0xfb, 0xe0, 0xbd, 0x9c } }
   //Guid for Extension Manager Package
@@ -533,6 +546,8 @@
 #define guidDavDataCmdId            CMDSETID_DaVinciDataToolsCommandSet
 #define guidVSStd14                 CMDSETID_StandardCommandSet14
 #define CLSID_StandardCommandSet14  CMDSETID_StandardCommandSet14
+#define guidVSStd15                 CMDSETID_StandardCommandSet15
+#define CLSID_StandardCommandSet15  CMDSETID_StandardCommandSet15
 
 // Standard editor guid.
 #define guidStdEditor   {0x9ADF33D0, 0x8AAD, 0x11d0, {0xB6, 0x06, 0x00, 0xA0, 0xC9, 0x22, 0xE8, 0x51} }
@@ -566,7 +581,7 @@
 #define IDM_VS_TOOL_OBJECT_BROWSER_GO 0x0007
 #define IDM_VS_TOOL_CLASSVIEW_GO      0x0008
 #define IDM_VS_TOOL_OBJSEARCH         0x0009
-//UNUSED 0x000a
+#define IDM_VS_TOOL_FINDALLREF        0x000a
 #define IDM_VS_TOOL_OPENWINDOWS       0x000b
 #define IDM_VS_TOOL_VIEWBAR       0x000c
 #define IDM_VS_TOOL_BUILD             0x000d
@@ -662,6 +677,7 @@
 #define IDM_VS_EDITOR_INTELLISENSE_MENU         0x3EA2
 #define IDM_VS_EDITOR_FIND_MENU                 0x3EA3
 #define IDM_VS_EDITOR_PASTE_MENU                0x3EA4
+#define IDM_VS_EDITOR_GOTO_MENU                 0x3EA5
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -778,6 +794,7 @@
 #define IDG_VS_TOOLS_OPTIONS          0x015A
 #define IDG_VS_TOOLS_OTHER2       0x015B
 #define IDG_VS_TOOLS_OBJSUBSET        0x015C
+#define IDG_VS_TOOLS_EXTENSIBILITY    0x015F
 
 // Addins Menu Groups
 #define IDG_VS_ADDIN_BUILTIN          0x015D
@@ -903,7 +920,7 @@
 
 // Code Window context menu groups
 #define IDG_VS_CODEWIN_TEXTEDIT     0x01C0
-#define IDG_VS_CODEWIN_DEBUG_BP     0x01C1
+//#define unused menu ID            0x01C1
 #define IDG_VS_CODEWIN_DEBUG_WATCH  0x01C2
 #define IDG_VS_CODEWIN_DEBUG_STEP   0x01C3
 #define IDG_VS_CODEWIN_MARKER       0x01C4
@@ -921,7 +938,11 @@
 #define IDG_VS_CODEWIN_REFACTORING_JS 0x02b8 // VS 2005 bug #275998
 #define IDG_VS_CODEWIN_LANGUAGE     0x02D0
 #define IDG_VS_CODEWIN_ADVANCED		0x02D1
+
+// Snippet flyout menu and groups
 #define IDG_VS_CODEWIN_SNIPPETS     0x02D2
+#define IDM_VS_CODEWIN_SNIPPET_ROOT 0x02D3
+#define IDG_VS_CODEWIN_SNIPPET_ROOT 0x02D4
 
 // Task List context menu groups
 #define IDG_VS_TASKLIST           0x01C7
@@ -934,7 +955,7 @@
 // 0x01CB used above (IDG_VS_ERRORLIST)
 #define IDG_VS_ERRORLIST_CLIENT           0x01CC
 #define IDG_VS_ERRORLIST_NEXTPREV_ERR     0x01CD
-// UNUSED: 0x01CE
+#define IDG_VS_TASKLIST_GROUPS            0x01CE
 #define IDG_VS_TASKLIST_COLUMNS           0x01CF
 
 #define IDG_VS_TASKLIST_SORT_COLUMN       0x01D0
@@ -963,7 +984,6 @@
 #define IDG_VS_ERRORLIST_FILTERCATEGORIESGROUP 0x01DB
 #define IDG_VS_ERRORLIST_BUILDGROUP            0x01DC
 #define IDG_VS_ERRORLIST_CLEARFILTERGROUP      0x01DD
-#define IDG_VS_ERRORLIST_TOGGLEANALYSISGROUP   0x01DE
 
 // Solution Node ctxt menu groups     
 #define IDG_VS_SOLNNODE_CTXT_TOP    0x01E0
@@ -1133,6 +1153,12 @@
 #define IDG_VS_OBJSEARCH_NAVIGATE2    0x0269 // Used in toolbar
 #define IDG_VS_OBJSEARCH_BROWSE       0x026a
 #define IDG_VS_OBJSEARCH_COMMON       0x026b
+
+// Find All References toolbar groups
+#define IDG_VS_FINDALLREF_COMMON           0x026c
+#define IDG_VS_FINDALLREF_PRESETGROUPINGS  0x026d
+#define IDG_VS_FINDALLREF_LOCKWINGROUP     0x026e
+#define IDG_VS_FINDALLREF_PRESERVED        0x026f
 
 // Object Browser menu groups
 #define IDG_VS_OBJBROWSER_SUBSETS     0x0270
@@ -1327,6 +1353,8 @@
 #define IDM_VS_CSCD_PROJECT_SCC               0x0362
 #define IDM_VS_CSCD_WINDOW_LAYOUTS            0x0363
 
+#define IDM_VS_CSCD_TASKLIST_GROUPS           0x0364
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Context Menu Identifiers, created by Visual Studio Shell
@@ -1449,7 +1477,8 @@
 #define IDM_VS_CTXT_WEBREFFOLDER      0x0452
 // App Designer Folder context menu
 #define IDM_VS_CTXT_APPDESIGNERFOLDER 0x0453
-
+// Find All References context menu
+#define IDM_VS_CTXT_FINDALLREF        0x0454
 //////////////////////////////////////////////////////////////////////////////
 // Right drag menu group
 #define IDM_VS_CTXT_RIGHT_DRAG        0x0460
@@ -1664,6 +1693,10 @@
 // Project menu groups
 #define IDG_VS_CTXT_PROJECT_BUILD_ORDER      0x0620
 #define IDG_VS_CTXT_PROJECT_BUILD_PGO        0x0621
+
+// Goto menu
+#define IDG_VS_GOTO                  0x0622
+
 
 ///////////////////////////////////////////////
 //
@@ -1897,6 +1930,15 @@
 #define IDM_SE_CONTEXT_STANDARD                 0x0503
 #define IDM_SE_TOOLBAR_VIEW                     0x0504
 #define IDM_SE_TOOLBAR_SERVEREXPLORER           0x0600
+
+///////////////////////////////////////////////
+//
+// SQL Server Object Explorer menu groups
+//
+///////////////////////////////////////////////
+
+//Context Menu
+#define mnuIdSqlServerObjectExplorerContextMenu           0x2003
 
 ///////////////////////////////////////////////
 //

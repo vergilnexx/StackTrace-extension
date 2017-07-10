@@ -24,7 +24,7 @@
 #define IDM_DEBUG_TOOLBAR_WINDOWS          0x0409
 #define IDM_DEBUGGER_CONTEXT_MENUS         0x0410
 //#define unused menu ID                   0x0411
-#define IDM_BREAKPOINT_SUBMENU             0x0412
+//#define unused menu ID                   0x0412
 #define IDM_DISASM_BREAKPOINT_SUBMENU      0x0413
 #define IDM_CALLSTACK_BREAKPOINT_SUBMENU   0x0414
 #define IDM_BREAKPOINTS_WINDOW_NEW_LIST    0x0415
@@ -620,6 +620,9 @@ inline long DBGCMDID_TOOLWINDOW_ID(DWORD cmdid)
 
 // step into specific
 #define cmdidStepIntoSpecificFirst          0x00007200
+#define cmdidStepIntoSpecificMaxDisplay     0x00007231
+// This is currently unused, but the entire range was previously
+// used for step into specific, so leaving it in to maintain that range.
 #define cmdidStepIntoSpecificLast           0x00007FFF
 
 // Call Stack commands
@@ -709,5 +712,6 @@ inline long DBGCMDID_TOOLWINDOW_ID(DWORD cmdid)
 #define guidResumeAppPackageAppIcon   { 0xfa813ed0, 0xbb98, 0x4a0e, { 0x9c, 0x27, 0x31, 0xc1, 0xab, 0xd7, 0xa7, 0x97 } }
 #define guidShutDownAppPackageAppIcon { 0x6edd202e, 0x1c6, 0x4a4a, { 0xab, 0x1a, 0x48, 0x56, 0xff, 0xc4, 0x9a, 0x3e } }
 
+#define cmdidReattach                       0x0000f010
 
 #endif // _VSDBGCMD_H_INCLUDED

@@ -52,6 +52,10 @@
 //  DEFINE_GUID(CMDSETID_StandardCommandSet14,
 //    0x4c7763bf, 0x5faf, 0x4264, 0xa3, 0x66, 0xb7, 0xe1, 0xf2, 0x7b, 0xa9, 0x58);
 //
+//   {712C6C80-883B-4AAD-B430-BBCA5256FA9D}
+//  DEFINE_GUID(CMDSETID_StandardCommandSet15,
+//    0x712c6c80, 0x883b, 0x4aad, 0xb4, 0x30, 0xbb, 0xca, 0x52, 0x56, 0xfa, 0x9d);
+//
 //  NOTE that new commands should be added to the end of StandardCommandSet2K
 //  and that CLSID_StandardCommandSet97 should not be further added to.
 //  NOTE also that in StandardCommandSet2K all commands up to ECMD_FINAL are
@@ -2041,6 +2045,9 @@ enum
 
 #define cmdidExploreFolderInWindows     1635
 
+#define cmdidEnableDPLSolution          1636
+#define cmdidDisableDPLSolution         1637
+
 #define cmdidNewSolutionFolderBar       1638
 
 #define cmdidDataShortcut               1639
@@ -2600,6 +2607,9 @@ enum
 #define cmdidHexadecimalNumberMap	2526
 #define cmdidIntegersDecimalsMap	2527
 
+#define cmdidBuildFullPDB          2528
+#define cmdidBuildFullPDBSolution  2529
+
 //////////////////////////////////////////////////////////////////
 //
 // The following commands form CMDSETID_StandardCommandSet10.
@@ -2832,7 +2842,6 @@ enum
 #define cmdidErrorBuildContextComboGetList   41
 
 #define cmdidErrorListClearFilters      50
-#define cmdidErrorListToggleAnalysis    51
 
 // The values 0x1000 to 0x1FFF are reserved for the Apply Window Layout's list
 // The first 9 commands are explicitly defined so they can be assigned key bindings
@@ -2853,6 +2862,32 @@ enum
 //////////////////////////////////////////////////////////////////
 //
 // End CMDSETID_StandardCommandSet14 commands.
+//
+//////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////
+//
+// The following commands form CMDSETID_StandardCommandSet15.
+// NOTE that all these commands are shareable and may be used
+// in any appropriate menu.
+//
+//////////////////////////////////////////////////////////////////
+
+#define cmdidNavigateToFile                 1
+#define cmdidNavigateToType                 2
+#define cmdidNavigateToSymbol               3
+#define cmdidNavigateToMember               4
+// Please start after 25 or after to reserve a few for filtered NavigateTo commands.
+
+// Find All References preset groupings
+#define cmdidFindAllRefPresetGroupingComboList     0x2A
+#define cmdidFindAllRefPresetGroupingComboGetList  0x2B
+#define cmdidFindAllRefLockWindow                  0x2C
+
+//////////////////////////////////////////////////////////////////
+//
+// End CMDSETID_StandardCommandSet15 commands.
 //
 //////////////////////////////////////////////////////////////////
 
@@ -3380,6 +3415,32 @@ enum
 #define cmdidTaskListColumnSort23   222
 #define cmdidTaskListColumnSort24   223
 #define cmdidTaskListColumnSort25   224
+
+#define cmdidTaskListColumnGroup1 600
+#define cmdidTaskListColumnGroup2 601
+#define cmdidTaskListColumnGroup3 602
+#define cmdidTaskListColumnGroup4 603
+#define cmdidTaskListColumnGroup5 604
+#define cmdidTaskListColumnGroup6 605
+#define cmdidTaskListColumnGroup7 606
+#define cmdidTaskListColumnGroup8 607
+#define cmdidTaskListColumnGroup9 608
+#define cmdidTaskListColumnGroup10 609
+#define cmdidTaskListColumnGroup11 610
+#define cmdidTaskListColumnGroup12 611
+#define cmdidTaskListColumnGroup13 612
+#define cmdidTaskListColumnGroup14 613
+#define cmdidTaskListColumnGroup15 614
+#define cmdidTaskListColumnGroup16 615
+#define cmdidTaskListColumnGroup17 616
+#define cmdidTaskListColumnGroup18 617
+#define cmdidTaskListColumnGroup19 618
+#define cmdidTaskListColumnGroup20 619
+#define cmdidTaskListColumnGroup21 620
+#define cmdidTaskListColumnGroup22 621
+#define cmdidTaskListColumnGroup23 622
+#define cmdidTaskListColumnGroup24 623
+#define cmdidTaskListColumnGroup25 624
 
 //////////////////////////////////////////////////////////////////
 //

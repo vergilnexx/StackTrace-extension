@@ -631,6 +631,7 @@
       <IDSymbol name="ConfirmButton" value="604" />
       <IDSymbol name="Conflict" value="605" />
       <IDSymbol name="ConnectArrow" value="3639" />
+      <IDSymbol name="ConnectedServices" value="3704" />
       <IDSymbol name="ConnectionBuilder" value="606" />
       <IDSymbol name="ConnectionOffline" value="607" />
       <IDSymbol name="ConnectionWarning" value="608" />
@@ -833,6 +834,7 @@
       <IDSymbol name="CubeDimension" value="802" />
       <IDSymbol name="Currency" value="803" />
       <IDSymbol name="CurrentContextArrow" value="804" />
+      <IDSymbol name="CurrentFile" value="3701" />
       <IDSymbol name="CurrentFlowDecision" value="805" />
       <IDSymbol name="CurrentFlowSwitch" value="806" />
       <IDSymbol name="CurrentInstructionPointer" value="807" />
@@ -1225,6 +1227,7 @@
       <IDSymbol name="Expander" value="1186" />
       <IDSymbol name="ExpandRight" value="1187" />
       <IDSymbol name="ExpandRightGroup" value="1188" />
+      <IDSymbol name="ExpandScope" value="3702" />
       <IDSymbol name="ExplodedDoughnutChart" value="1189" />
       <IDSymbol name="ExplodedPieChart" value="1190" />
       <IDSymbol name="Export" value="1191" />
@@ -1332,6 +1335,7 @@
       <IDSymbol name="FolderBottomPanel" value="1292" />
       <IDSymbol name="FolderBrowserDialogControl" value="1293" />
       <IDSymbol name="FolderClosed" value="1294" />
+      <IDSymbol name="FolderCodeAnalysis" value="3693" />
       <IDSymbol name="FolderError" value="1295" />
       <IDSymbol name="FolderInformation" value="1296" />
       <IDSymbol name="FolderOffline" value="1297" />
@@ -1700,6 +1704,7 @@
       <IDSymbol name="Key" value="1654" />
       <IDSymbol name="Keyboard" value="1655" />
       <IDSymbol name="KeyColumn" value="1656" />
+      <IDSymbol name="KeyVault" value="3692" />
       <IDSymbol name="KeyVertical" value="3617" />
       <IDSymbol name="KeywordSnippet" value="1657" />
       <IDSymbol name="KPI" value="1658" />
@@ -2060,6 +2065,7 @@
       <IDSymbol name="NewItem" value="3638" />
       <IDSymbol name="NewKey" value="2010" />
       <IDSymbol name="NewKPI" value="2011" />
+      <IDSymbol name="NewLayerDiagram" value="3705" />
       <IDSymbol name="NewLeftFrame" value="2012" />
       <IDSymbol name="NewLinkedTable" value="2013" />
       <IDSymbol name="NewLinkedWorkItem" value="2014" />
@@ -2654,6 +2660,7 @@
       <IDSymbol name="ReportParameter" value="2577" />
       <IDSymbol name="ReportProjectWizard" value="2578" />
       <IDSymbol name="ReportWarning" value="2579" />
+      <IDSymbol name="Repository" value="3703" />
       <IDSymbol name="RequestBridge" value="2580" />
       <IDSymbol name="RequiredFieldValidator" value="2581" />
       <IDSymbol name="RequiredInterface" value="2582" />
@@ -2933,9 +2940,11 @@
       <IDSymbol name="SnippetChecked" value="2853" />
       <IDSymbol name="SoftwareDefinitionModel" value="2854" />
       <IDSymbol name="Solution" value="2855" />
+      <IDSymbol name="SolutionFolderSwitch" value="3699" />
       <IDSymbol name="SolutionV11" value="2856" />
       <IDSymbol name="SolutionV12" value="2857" />
       <IDSymbol name="SolutionV14" value="2858" />
+      <IDSymbol name="SolutionV15" value="3691" />
       <IDSymbol name="SortAscending" value="2859" />
       <IDSymbol name="SortByColumn" value="2860" />
       <IDSymbol name="SortByNamespace" value="2861" />
@@ -3176,9 +3185,17 @@
       <IDSymbol name="Test" value="3082" />
       <IDSymbol name="TestApplication" value="3083" />
       <IDSymbol name="TestController" value="3084" />
+      <IDSymbol name="TestCoveredException" value="3694" />
+      <IDSymbol name="TestCoveredFailing" value="3695" />
+      <IDSymbol name="TestCoveredFailingException" value="3696" />
+      <IDSymbol name="TestCoveredFailingStale" value="3706" />
+      <IDSymbol name="TestCoveredPassing" value="3697" />
+      <IDSymbol name="TestCoveredPassingStale" value="3707" />
       <IDSymbol name="TestGroup" value="3085" />
       <IDSymbol name="TestList" value="3086" />
       <IDSymbol name="TestManager" value="3087" />
+      <IDSymbol name="TestNotCovered" value="3698" />
+      <IDSymbol name="TestNotCoveredStale" value="3708" />
       <IDSymbol name="TestNotInList" value="3088" />
       <IDSymbol name="TestPass" value="3089" />
       <IDSymbol name="TestPlan" value="3090" />
@@ -3213,6 +3230,7 @@
       <IDSymbol name="ThirdOfFourRows" value="3119" />
       <IDSymbol name="ThirdOfThreeColumns" value="3120" />
       <IDSymbol name="ThirdOfThreeRows" value="3121" />
+      <IDSymbol name="ThisLine" value="3700" />
       <IDSymbol name="Thread" value="3122" />
       <IDSymbol name="ThreadStopped" value="3123" />
       <IDSymbol name="ThreeColumns" value="3124" />

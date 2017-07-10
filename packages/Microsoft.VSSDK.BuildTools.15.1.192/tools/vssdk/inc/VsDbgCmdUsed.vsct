@@ -24,6 +24,7 @@
     <UsedCommand Condition="!defined(No_StartNoDebug)" guid="guidVSStd97" id="cmdidStartNoDebug"/>
     <!-- #endif     -->
     <!--  -->
+    <UsedCommand guid="guidVSDebugCommand" id="cmdidReattach"/>
     <UsedCommand guid="guidVSStd97" id="cmdidPause"/>
     <UsedCommand guid="guidVSStd97" id="cmdidStop"/>
     <UsedCommand guid="guidVSDebugCommand" id="cmdidStopEvaluatingExpression"/>
@@ -275,7 +276,6 @@
     <!-- Make conditional for the items in this block -->
     <!-- #if !defined(No_DisasmWindow) -->
     <UsedCommands Condition="!defined(No_DisasmWindow)">
-      <UsedCommand guid="guidVSDebugCommand" id="cmdidGoToSource"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidToggleDisassembly"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidShowDisasmAddress"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidShowDisasmSource"/>
@@ -374,7 +374,6 @@
     <!-- #if !defined(No_CallStackWindow) -->
     <UsedCommands Condition="!defined(No_CallStackWindow)">
       <UsedCommand guid="guidVSDebugCommand" id="cmdidSetCurrentFrame"/>
-      <UsedCommand guid="guidVSDebugCommand" id="cmdidGoToSource"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidCallStackTypes"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidCallStackNames"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidCallStackValues"/>
@@ -386,10 +385,10 @@
       <UsedCommand guid="guidVSDebugCommand" id="cmdidUnwindFromException"/>
     </UsedCommands>
     <!-- #endif     -->
-    <!--  -->
-    <UsedCommand guid="guidVSDebugCommand" id="cmdidCopyExpression"/>
-    <UsedCommand guid="guidVSDebugCommand" id="cmdidCopyValue"/>
-    <UsedCommand guid="guidVSDebugCommand" id="cmdidEditValue"/>
+     <UsedCommands Condition="!defined(No_CallStackWindow) OR !defined(No_DisasmWindow)">
+      <UsedCommand guid="guidVSDebugCommand" id="cmdidGoToSource"/>
+    </UsedCommands>
+
     <!--  -->
     <!--     // commands available in the command window only -->
     <UsedCommand guid="guidVSStd97" id="cmdidEvaluateExpression"/>
@@ -478,7 +477,6 @@
       <UsedCommand guid="guidVSDebugCommand" id="cmdidToggleUserCode"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidLoadSymbolsFromCurrentPath"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidSymbolLoadInfo"/>
-      <UsedCommand guid="guidVSDebugCommand" id="cmdidSymbolOptions"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidSymbolsIncludeExclude"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidShowAllModules"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidModulesWindowFilter"/>

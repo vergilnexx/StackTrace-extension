@@ -268,7 +268,7 @@
           <!-- Find Results 1 toolbar/context menu commands -->
           <UsedCommands Condition="!Defined(No_ShellPkg_ToolWindows_FindResults1)" >
             <UsedCommand guid="guidVSStd2K" id="cmdidClearPaneFR1"/>
-            <UsedCommand guid="guidVSStd14" id="cmdidDeleteFR2"/>
+            <UsedCommand guid="guidVSStd14" id="cmdidDeleteFR1"/>
             <UsedCommand guid="guidVSStd2K" id="cmdidGotoErrorTagFR1"/>
             <UsedCommand guid="guidVSStd2K" id="cmdidGotoNextErrorTagFR1"/>
             <UsedCommand guid="guidVSStd2K" id="cmdidGotoPrevErrorTagFR1"/>
@@ -348,7 +348,6 @@
         <UsedCommand guid="guidVSStd2K" id="cmdidDeleteBookmark"/>
         <UsedCommand guid="guidVSStd2K" id="cmdidEnableBookmark"/>
         <UsedCommand guid="guidVSStd2K" id="cmdidRenameBookmark"/>
-        <UsedCommand guid="guidVSStd2K" id="cmdidDeleteBookmark"/>
         <UsedCommand guid="guidVSStd2K" id="cmdidBookmarkWindowGoToBookmark"/>
       </UsedCommands>
 
@@ -569,6 +568,31 @@
         <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnSort23"/>
         <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnSort24"/>
         <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnSort25"/>
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup1" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup2" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup3" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup4" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup5" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup6" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup7" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup8" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup9" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup10" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup11" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup12" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup13" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup14" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup15" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup16" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup17" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup18" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup19" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup20" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup21" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup22" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup23" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup24" />
+        <UsedCommand guid="CLSID_VsTaskListPackage" id="cmdidTaskListColumnGroup25" />
       </UsedCommands>
 
 
@@ -1177,6 +1201,11 @@
       <UsedCommand Condition="!Defined(No_NewProjectCommand)" guid="guidVSStd97" id="cmdidNewProject"/>
     </UsedCommands>
 
+    <UsedCommands Condition="!Defined(No_ProjectCommands) OR !Defined(No_SolutionCommands)">
+      <UsedCommand Condition="!Defined(No_SetStartupProjectCommand)" guid="guidVSStd97" id="cmdidSetStartupProject"/>
+    </UsedCommands>
+
+
     <UsedCommands Condition="!Defined(No_ProjectCommands)">
       <UsedCommand Condition="!Defined(No_ProjectPropertiesCommand)" guid="guidVSStd97" id="cmdidProjectProperties"/>
       <UsedCommand Condition="!Defined(No_ProjectExploreFolderInWindows)" guid="guidVSStd2K" id="cmdidExploreFolderInWindows"/>
@@ -1185,7 +1214,6 @@
       <UsedCommand Condition="!Defined(No_AddExistingItemCommand)" guid="guidVSStd97" id="cmdidAddExistingItem"/>
       <UsedCommand Condition="!Defined(No_NewFolderCommand)" guid="guidVSStd97" id="cmdidNewFolder"/>
       <UsedCommand Condition="!Defined(No_ProjectReferencesCommand)" guid="guidVSStd97" id="cmdidProjectReferences"/>
-      <UsedCommand Condition="!Defined(No_SetStartupProjectCommand)" guid="guidVSStd97" id="cmdidSetStartupProject"/>
       <UsedCommand Condition="!Defined(No_CloseProjectCommand)" guid="guidVSStd2K" id="cmdidCloseProject"/>
       <UsedCommand Condition="!Defined(No_AddReferenceProjectOnlyCommand)" guid="guidVSStd12" id="cmdidAddReferenceProjectOnly" />
       <UsedCommand Condition="!Defined(No_AddWebReferenceProjectOnlyCommand)" guid="guidVSStd12" id="cmdidAddWebReferenceProjectOnly" />
@@ -1208,7 +1236,6 @@
       <UsedCommand Condition="!Defined(No_SetBuildStartupsOnlyOnRunCommand)" guid="guidVSStd2K" id="cmdidSetBuildStartupsOnlyOnRun"/>
 
       <UsedCommand Condition="!Defined(No_ProjectSettingsCommand)" guid="guidVSStd97" id="cmdidProjectSettings"/>
-      <UsedCommand Condition="!Defined(No_SetStartupProjectCommand)" guid="guidVSStd97" id="cmdidSetStartupProject"/>
 
       <UsedCommand Condition="!Defined(No_SolutionCfgCommand)" guid="guidVSStd97" id="cmdidSolutionCfg"/>
       <UsedCommand Condition="!Defined(No_SolutionPlatformCommand)" guid="guidVSStd2K" id="cmdidSolutionPlatform"/>

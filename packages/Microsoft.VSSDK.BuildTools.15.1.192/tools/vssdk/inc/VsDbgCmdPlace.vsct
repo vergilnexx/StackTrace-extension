@@ -106,12 +106,6 @@
         </Strings>
       </Menu>
       <!-- #endif         -->
-      <Menu guid="guidVSDebugGroup" id="IDM_BREAKPOINT_SUBMENU" priority="0x0500" type="Menu">
-        <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_BP"/>
-        <Strings>
-          <ButtonText>&amp;Breakpoint</ButtonText>
-        </Strings>
-      </Menu>
       <Menu guid="guidVSDebugGroup" id="IDM_NEW_BREAKPOINT_SUBMENU" priority="0x0300" type="Menu">
         <Parent guid="guidVSDebugGroup" id="IDG_BREAKPOINTS"/>
         <Strings>
@@ -501,14 +495,6 @@
         <Parent guid="guidVSDebugGroup" id="IDM_OTHER_DEBUG_TARGETS_SUBMENU"/>
       </Group>
       <!--          -->
-      <!--         // Breakpoint submenu groups -->
-      <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINT_CONTEXT_ADD_DELETE" priority="0x0100">
-        <Parent guid="guidVSDebugGroup" id="IDM_BREAKPOINT_SUBMENU"/>
-      </Group>
-      <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINT_CONTEXT_MODIFY" priority="0x0300">
-        <Parent guid="guidVSDebugGroup" id="IDM_BREAKPOINT_SUBMENU"/>
-      </Group>
-      <!--          -->
       <!--         // New Breakpoint submenu groups -->
       <Group guid="guidVSDebugGroup" id="IDG_NEW_BREAKPOINT_SUBMENU" priority="0x0100">
         <Parent guid="guidVSDebugGroup" id="IDM_NEW_BREAKPOINT_SUBMENU"/>
@@ -536,9 +522,6 @@
       <!--         // All debugger context menus should be placed into this group. -->
       <Group guid="guidVSDebugGroup" id="IDG_DEBUGGER_CONTEXT_MENUS" priority="0x0100">
         <Parent guid="guidVSDebugGroup" id="IDM_DEBUGGER_CONTEXT_MENUS"/>
-      </Group>
-      <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINT_EXPORT" priority="0x0400">
-        <Parent guid="guidVSDebugGroup" id ="IDM_BREAKPOINT_SUBMENU"/>
       </Group>
       <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINTS_WINDOW_SORT_NONE" priority="0x0100">
         <Parent guid="guidVSDebugGroup" id="IDM_BREAKPOINTS_WINDOW_SORT_LIST"/>
@@ -1006,6 +989,9 @@
       <Parent guid="guidVSDebugGroup" id="IDG_EXECUTION"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidStartNoDebug" priority="0x0300">
+      <Parent guid="guidVSDebugGroup" id="IDG_EXECUTION"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSDebugCommand" id="cmdidReattach" priority="0x0E50">
       <Parent guid="guidVSDebugGroup" id="IDG_EXECUTION"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidPause" priority="0x0500">
@@ -1648,9 +1634,6 @@
     <CommandPlacement guid="guidVSDebugCommand" id="cmdidLoadSymbolsFromCurrentPath" priority="0x0100">
       <Parent guid="guidVSDebugGroup" id="IDG_DATATIP_SYMBOLS"/>
     </CommandPlacement>
-    <CommandPlacement guid="guidVSDebugCommand" id="cmdidInsertTracepoint" priority="0x0200">
-      <Parent guid="guidVSDebugGroup" id="IDG_BREAKPOINT_CONTEXT_ADD_DELETE"/>
-    </CommandPlacement>
     <CommandPlacement guid="guidVSDebugCommand" id="cmdidSymbolLoadInfo" priority="0x0400">
       <Parent guid="guidVSDebugGroup" id="IDG_CALLSTACK_SYMBOLS"/>
     </CommandPlacement>
@@ -2066,14 +2049,8 @@
     <CommandPlacement guid="guidVSStd97" id="cmdidAddWatch" priority="0x0100">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_WATCH"/>
     </CommandPlacement>
-    <CommandPlacement guid="guidVSDebugCommand" id="cmdidAddParallelWatch" priority="0x0200">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_WATCH"/>
-    </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidQuickWatch" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_WATCH"/>
-    </CommandPlacement>
-    <CommandPlacement guid="guidVSStd97" id="cmdidShowNextStatement" priority="0x0100">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidRunToCursor" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>
@@ -2085,9 +2062,6 @@
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidSetNextStatement" priority="0x0600">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>
-    </CommandPlacement>
-    <CommandPlacement guid="guidVSDebugCommand" id="cmdidStepFilterToggle" priority="0x0101">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSDebugCommand" id="cmdidGoToDisassembly" priority="0x0700">
@@ -2188,6 +2162,8 @@
     <KeyBinding guid="guidVSDebugCommand" id="cmdidMemoryWindowShow2" editor="guidVSStd97" key1="M" mod1="Control Alt" key2="2"/>
     <KeyBinding guid="guidVSDebugCommand" id="cmdidMemoryWindowShow3" editor="guidVSStd97" key1="M" mod1="Control Alt" key2="3"/>
     <KeyBinding guid="guidVSDebugCommand" id="cmdidMemoryWindowShow4" editor="guidVSStd97" key1="M" mod1="Control Alt" key2="4"/>
+    <KeyBinding guid="guidVSDebugCommand" id="cmdidReattach" editor="guidVSStd97" key1="P" mod1="Shift Alt"/>
+    
     <!--  -->
     <!-- Make conditional for the items in this block -->
     <!-- #if defined(SupportsOneWatchWindowOnly) -->
@@ -2238,6 +2214,7 @@
     <!--  -->
     <!--     // navigation -->
     <KeyBinding guid="guidVSDebugCommand" id="cmdidToggleDisassembly" editor="guidVSStd97" key1="VK_F11" mod1="Control"/>
+    <KeyBinding guid="guidVSDebugCommand" id="cmdidGoToDisassembly" editor="guidVSStd97" key1="G" mod1="Alt"/>
     <!--  -->
     <!--     // breakpoints window -->
     <!-- Make conditional for the items in this block -->
