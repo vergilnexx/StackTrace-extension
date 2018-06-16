@@ -986,6 +986,15 @@
       </Menu>
 
       <!--  -->
+      <Menu guid="guidStdEditor" id="IDM_VS_CODEWIN_ANNOTATION_ROOT" priority="0x0450" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION_ROOT"/>
+        <Strings>
+          <ButtonText>Annotation</ButtonText>
+          <CommandName>&amp;Annotation</CommandName>
+        </Strings>
+      </Menu>
+
+      <!--  -->
       <Menu guid="guidStdEditor" id="IDM_VS_EDITOR_CSCD_OUTLINING_MENU" priority="0x0F00" type="Menu">
         <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ADVANCED"/>
         <Strings>
@@ -1856,15 +1865,15 @@
       <!--     // Help Menu Groups -->
       <!--     // Help Menu, Samples Group -->
 
-      <Group guid="guidSHLMainMenu" id="IDG_VS_HELP_SAMPLES" priority="0x0400">
-        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_HELP"/>
-      </Group>
-
       <Group guid="guidSHLMainMenu" id="IDG_VS_HELP_SUPPORT" priority="0x0500">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_HELP"/>
       </Group>
 
       <Group guid="guidSHLMainMenu" id="IDG_VS_HELP_ABOUT" priority="0xFE00">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_HELP"/>
+      </Group>
+
+      <Group guid="guidSHLMainMenu" id="IDG_VS_HELP_ACCESSIBILITY" priority="0x800">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_HELP"/>
       </Group>
       
@@ -2054,6 +2063,9 @@
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_NAVIGATETOLOCATION" priority="0x0110">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_INTELLITRACE_STEP" priority="0x0300">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP" priority="0x0300">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
@@ -2066,6 +2078,9 @@
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_TEXTEDIT" priority="0x0400">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION_ROOT" priority="0x0450">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+      </Group>
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ADVANCED" priority="0x0500">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
@@ -2075,6 +2090,9 @@
       <!--      -->
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_SNIPPETS" priority="0x0100">
         <Parent guid="guidStdEditor" id="IDM_VS_CODEWIN_SNIPPET_ROOT"/>
+      </Group>
+      <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION" priority="0x0100">
+        <Parent guid="guidStdEditor" id="IDM_VS_CODEWIN_ANNOTATION_ROOT"/>
       </Group>
       <!--      -->
       <Group guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_OPENURL" priority="0x0100">
@@ -2711,6 +2729,20 @@
     <CommandPlacement guid="guidVSStd97" id="cmdidDelete" priority="0x0700">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_EDIT_CUTCOPY"/>
     </CommandPlacement>
+    <!--  -->
+    <CommandPlacement guid="guidVSStd15" id="cmdidShowLineAnnotations" priority="0x0800">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd15" id="cmdidMoveToNextAnnotation" priority="0x0810">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd15" id="cmdidMoveToPreviousAnnotation" priority="0x0820">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd15" id="cmdidShowStructure" priority="0x0830">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_ANNOTATION"/>
+    </CommandPlacement>
+    <!--  -->
     <!-- Make conditional for the items in this block -->
     <!-- #ifndef VSE -->
     <CommandPlacement Condition="!Defined(VSE)" guid="guidVSStd97" id="cmdidRemove" priority="0xEE00">
@@ -4490,9 +4522,6 @@
     <CommandPlacement guid="guidVSStd97" id="cmdidDebugContextWindow" priority="0x0200">
       <Parent guid="guidHelpGrpId" id="IDG_HELP_GRP"/>
     </CommandPlacement>
-    <CommandPlacement guid="guidVSStd97" id="cmdidHelpSamples" priority="0x0100">
-      <Parent guid="guidSHLMainMenu" id="IDG_VS_HELP_SAMPLES"/>
-    </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidTechSupport" priority="0x0400">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_HELP_SUPPORT"/>
     </CommandPlacement>
@@ -4514,6 +4543,9 @@
       <Parent guid="guidSHLMainMenu" id="IDG_VS_HELP_ABOUT"/>
     </CommandPlacement>
     <!-- #endif //MSDN_MENUS -->
+    <CommandPlacement guid="guidVSStd15" id="cmdidHelpAccessibility" priority="0x000">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_HELP_ACCESSIBILITY" />
+    </CommandPlacement>
     <!--  -->
     <!--   // Output Window Pane context menu commands -->
     <CommandPlacement guid="guidVSStd97" id="cmdidCopy" priority="0x0100">
@@ -6264,6 +6296,9 @@
     <CommandPlacement guid="guidVSStd2K" id="cmdidContextMenuViewCallHierarchy" priority="0x0500">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_NAVIGATETOLOCATION"/>
     </CommandPlacement>
+    <CommandPlacement guid="guidVSStd2K" id="ECMD_OPENURL" priority="0x0800">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_NAVIGATETOLOCATION"/>
+    </CommandPlacement>
     <!--  -->
     <!--   // place commands on the CodeWindow context menu -->
     <CommandPlacement guid="guidVSStd2K" id="ECMD_OPENFILE" priority="0x0100">
@@ -6479,6 +6514,11 @@
     <KeyBinding guid="guidVSStd97" id="cmdidPasteNextTBXCBItem" editor="guidVSStd97" key1="V" mod1="Control Shift"/>
     <KeyBinding guid="guidVSStd97" id="cmdidToggleDesigner" editor="guidVSStd97" key1="VK_F7"/>
     <!--  -->
+    <KeyBinding guid="guidVSStd15" id="cmdidShowLineAnnotations" editor="guidVSStd97" key1="K" mod1="Control" key2="M" mod2="Control"/>
+    <KeyBinding guid="guidVSStd15" id="cmdidMoveToNextAnnotation" editor="guidVSStd97" key1="K" mod1="Control" key2="VK_RIGHT" mod2="Control"/>
+    <KeyBinding guid="guidVSStd15" id="cmdidMoveToPreviousAnnotation" editor="guidVSStd97" key1="K" mod1="Control" key2="VK_LEFT" mod2="Control"/>
+    <KeyBinding guid="guidVSStd15" id="cmdidShowStructure" editor="guidVSStd97" key1="K" mod1="Control" key2="G" mod2="Control"/>
+    <!--  -->
     <KeyBinding guid="guidVSStd97" id="cmdidFind" editor="guidVSStd97" key1="F" mod1="Control"/>
     <KeyBinding guid="guidVSStd97" id="cmdidFindInFiles" editor="guidVSStd97" key1="F" mod1="Control Shift"/>
     <KeyBinding guid="guidVSStd97" id="cmdidQuickObjectSearch" editor="guidVSStd97" key1="VK_F12" mod1="Shift Alt"/>
@@ -6673,6 +6713,10 @@
     <GuidSymbol name="guidVSStd15CmdID" value="{712C6C80-883B-4AAD-B430-BBCA5256FA9D}">
       <IDSymbol name="cmdidFindAllRefPresetGroupingComboList" value="0x2A" />
       <IDSymbol name="cmdidFindAllRefPresetGroupingComboGetList" value="0x2B" />
+      <IDSymbol name="cmdidShowLineAnnotations" value="0x4C" />
+      <IDSymbol name="cmdidMoveToNextAnnotation" value="0x4D" />
+      <IDSymbol name="cmdidMoveToPreviousAnnotation" value="0x4E" />
+      <IDSymbol name="cmdidShowStructure" value="0x4F" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

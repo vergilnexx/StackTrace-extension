@@ -24,7 +24,7 @@
 #define IDM_DEBUG_TOOLBAR_WINDOWS          0x0409
 #define IDM_DEBUGGER_CONTEXT_MENUS         0x0410
 //#define unused menu ID                   0x0411
-//#define unused menu ID                   0x0412
+#define IDM_BREAKPOINT_SUBMENU             0x0412
 #define IDM_DISASM_BREAKPOINT_SUBMENU      0x0413
 #define IDM_CALLSTACK_BREAKPOINT_SUBMENU   0x0414
 #define IDM_BREAKPOINTS_WINDOW_NEW_LIST    0x0415
@@ -228,72 +228,22 @@
 #define IDG_WATCH_SYMBOLS_SETTINGS      0x0217
 #define IDG_DATATIP_SYMBOLS_SETTINGS    0x0218
 
+#define IDG_VS_CODEWIN_DEBUG_BP         0x0230
 
 // this group is for commands that are available in the command window,
 // but are not on any menus by default
 #define IDG_COMMAND_WINDOW              0x0300
 
+#define IDG_INTELLITRACE_STEP           0x0400
+#define IDG_INTELLITRACE_TOOLBAR_STEP   0x0401
+
 ///////////////////////////////////////////////////////////////////////////////
 // Indexes into bitmaps (image wells)
 
-// DbgIcons.bmp
-#define IDBI_THREADS                    1
-#define IDBI_RUNNING_DOCS               2
-#define IDBI_EXECUTE                    3
-#define IDBI_BREAKPOINTS_WINDOW         4
-#define IDBI_ATTACH_TO_PROCESS          5
-#define IDBI_EXCEPTIONS                 6 // not used. TODO: should be removed next time we replace the DbgIcons.bmp strip.
-#define IDBI_ENABLE_BREAKPOINT          7
-#define IDBI_STACK                      8
-#define IDBI_LOCALS                     9
-#define IDBI_AUTOS                     10
-#define IDBI_DETACH                    11
-#define IDBI_DISASM                    12
-#define IDBI_MEMORY                    13
-#define IDBI_REGISTERS                 14
-#define IDBI_WATCH                     15
-#define IDBI_MODULES                   16
-#define IDBI_CONSOLE_WINDOW            17
-#define IDBI_BREAKPOINT                18
-#define IDBI_VIEW_BREAKPOINT           19
-#define IDBI_AUTO_REEVALUATE           20
-#define IDBI_PROCESSES                 21
-#define IDBI_GO_TO_SOURCE              22
-#define IDBI_GO_TO_DISASSEMBLY         23
-#define IDBI_APPLY_CODE_CHANGES        24
-#define IDBI_STOP_APPLY_CODE_CHANGES   25
-#define IDBI_BREAKPOINT_PROPERTIES     26
-#define IDBI_DELETE_ALL_BREAKPOINTS    27
-#define IDBI_DISABLE_ALL_BREAKPOINTS   28 // not used.
-#define IDBI_ENABLE_ALL_BREAKPOINTS    29 // not used.
-#define IDBI_TOGGLE_ALL_BREAKPOINTS    30
-#define IDBI_DELETE                    31
-#define IDBI_UP                        32
-#define IDBI_DOWN                      33
-#define IDBI_NEWFOLDER                 34
-#define IDBI_REFRESH                   35
-#define IDBI_TERMINATE_PROCESS         36
-#define IDBI_DELETE_BREAKPOINT         37
-#define IDBI_FLAG                      38
-#define IDBI_TOGGLE_FLAG               39
-#define IDBI_TOGGLE_THREAD_IPS         40
-#define IDBI_BREAKPOINT_IMPORT         45
-#define IDBI_BREAKPOINT_EXPORT         46
-#define IDBI_REAL_FUNC_EVAL            47
-#define IDBI_SHOW_CURRENT_PROCESS_ONLY 48
-
 //Instructions for adding new icons:
-//1) Edit vsdebug\resource\DbgIcons.bmp, adding the new icon to the right of the existing icons.
-//2) Add a new #define in this file, defining the new IDBI_ constant as the 1-based (not 0-based) index of the image in the bitmap file, that is,
-//      1 + (x / 16) where x is the leftmost x-coordinate of the image in the bitmap.
-//3) Add the new value to the enum definition inside vsdebug\package\imagelists.h
-//4) Add the references to vsdebug\resource\VSDbgCmdBase.vsct as needed.  
-//5) In vsdebug\resource\VSDbgCmdBase.vsct, search for the following code:
-//    <Bitmap guid="guidDebuggerIcon" resID="IDB_DEBUGGER_ICONS" usedList="IDBI_THREADS, IDBI_RUNNING_DOCS,...
-//   and add the newly created icon to the used list.
-//
-// For an example of how to do this, see sdv this file, or see changeset #547024 (main server).
-
+// First, see if the icon is already in the VS Image Catalog.
+// If so, use it. If not, view the readme.txt file for vsimage
+// service to find out how to add new images.
 
 // DbgToolwindowIcons.bmp
 #define IDBI_TW_THREADS                 1
@@ -639,6 +589,7 @@ inline long DBGCMDID_TOOLWINDOW_ID(DWORD cmdid)
 #define cmdidCrossThreadCallStack           0x00008008
 #define cmdidShowExternalCode               0x00008009
 #define cmdidUnwindFromException            0x0000800a
+#define cmdidCallstackShowFrameType         0x0000800b
 
 // Datatip commands
 #define cmdidDatatipFirst                   0x00009000

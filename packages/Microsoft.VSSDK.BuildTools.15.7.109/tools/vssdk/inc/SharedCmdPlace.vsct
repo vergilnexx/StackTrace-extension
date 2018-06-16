@@ -634,7 +634,7 @@
       <Menu guid="guidSHLMainMenu" id="IDM_VS_MNUCTRL_CVGROUPING" priority="0x0000" type="MenuControllerLatched">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_TOOL_MAINMENU" />
         <Strings>
-          <ButtonText>Class View Settings</ButtonText>
+          <ButtonText>Settings</ButtonText>
         </Strings>
       </Menu>
       <!--  -->
@@ -4371,7 +4371,6 @@
     <KeyBinding guid="guidVSStd2K" id="ECMD_EXTRACTINTERFACE" editor="guidVSStd97" key1="R" mod1="Control" key2="I" mod2="Control"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_REMOVEPARAMETERS" editor="guidVSStd97" key1="R" mod1="Control" key2="V" mod2="Control"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_REORDERPARAMETERS" editor="guidVSStd97" key1="R" mod1="Control" key2="O" mod2="Control"/>
-    <KeyBinding guid="guidVSStd2K" id="ECMD_GENERATEMETHODSTUB" editor="guidVSStd97" key1="K" mod1="Control" key2="M" mod2="Control"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_SURROUNDWITH" editor="guidVSStd97" key1="K" mod1="Control" key2="S" mod2="Control"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_INSERTSNIPPET" editor="guidVSStd97" key1="K" mod1="Control" key2="X" mod2="Control"/>
     <KeyBinding guid="guidVSStd2K" id="ECMD_SMARTTASKS" editor="guidVSStd97" key1="VK_F10" mod1="Alt Shift"/>

@@ -383,6 +383,7 @@
       <UsedCommand guid="guidVSDebugCommand" id="cmdidShowExternalCode"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidCrossThreadCallStack"/>
       <UsedCommand guid="guidVSDebugCommand" id="cmdidUnwindFromException"/>
+      <UsedCommand guid="guidVSDebugCommand" id="cmdidCallstackShowFrameType"/>
     </UsedCommands>
     <!-- #endif     -->
      <UsedCommands Condition="!defined(No_CallStackWindow) OR !defined(No_DisasmWindow)">

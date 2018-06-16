@@ -56,6 +56,8 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <CopyVsixExtensionFiles Condition="'$(CopyVsixExtensionFiles)'==''">false</CopyVsixExtensionFiles>
     <CreateVsixContainer Condition="'$(CreateVsixContainer)' == ''">true</CreateVsixContainer>
     <CopyVsixManifestToOutput Condition="'$(CopyVsixManifestToOutput)' == '' and ('$(CreateVsixContainer)' != 'false' or '$(DeployExtension)' != 'false' or '$(CopyVsixExtensionFiles)' != 'false')">true</CopyVsixManifestToOutput>
+    <CreatePkgDefAssemblyToProcess Condition="'$(CreatePkgDefAssemblyToProcess)' == ''">$(TargetPath)</CreatePkgDefAssemblyToProcess>
+    <BuildInParallel Condition="'$(BuildInParallel)' == ''">true</BuildInParallel>
   </PropertyGroup>
 
   <!--
@@ -134,6 +136,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     </ReadReferencesFromVsixManifest>
 
     <MSBuild Projects="@(_VsixManifestReferencesToResolve)"
+         BuildInParallel="$(BuildInParallel)"
          Properties="%(_VsixManifestReferencesToResolve.SetConfiguration); %(_VsixManifestReferencesToResolve.SetPlatform)"
          Targets="%(_VsixManifestReferencesToResolve.OutputGroupToResolve)"
          RebaseOutputs="false">
@@ -213,6 +216,8 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <IncludeCOMReferencesInVSIXContainer Condition="'$(IncludeCOMReferencesInVSIXContainer)'==''">true</IncludeCOMReferencesInVSIXContainer>
     <IncludeCopyLocalReferencesInVSIXContainer Condition="'$(IncludeCopyLocalReferencesInVSIXContainer)'==''">true</IncludeCopyLocalReferencesInVSIXContainer>
     <IncludePkgdefInVSIXContainer Condition="'$(IncludePkgdefInVSIXContainer)'==''">true</IncludePkgdefInVSIXContainer>
+
+    <GetVsixSourceItemsDependsOn Condition="'$(IncludeSatelliteAssembliesInVSIXContainer)'=='true'">$(GetVsixSourceItemsDependsOn);SatelliteDllsProjectOutputGroup</GetVsixSourceItemsDependsOn>
   </PropertyGroup>
 
   <Target
@@ -265,7 +270,13 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     </ItemGroup>
 
     <ItemGroup Condition="'$(IncludeSatelliteAssembliesInVSIXContainer)'=='true'">
-      <VSIXSourceItem Include="@(IntermediateSatelliteAssembliesWithTargetPath->'$(OutDir)%(Culture)\$(TargetName).resources.dll')">
+      <VSIXSourceItem Include="@(SatelliteDllsProjectOutputGroupOutput->'%(FinalOutputPath)')"
+                      Condition=" '%(SatelliteDllsProjectOutputGroupOutput.FinalOutputPath)' != '' ">
+        <VSIXSubPath>$(AssemblyVSIXSubPath)</VSIXSubPath>
+        <InstallRoot>$(InstallRoot)</InstallRoot>
+      </VSIXSourceItem>
+      <VSIXSourceItem Include="@(SatelliteDllsProjectOutputGroupOutput)"
+                      Condition=" '%(SatelliteDllsProjectOutputGroupOutput.FinalOutputPath)' == '' ">
         <VSIXSubPath>$(AssemblyVSIXSubPath)</VSIXSubPath>
         <InstallRoot>$(InstallRoot)</InstallRoot>
       </VSIXSourceItem>
@@ -319,7 +330,9 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       <SuppressFromVsix Include="Microsoft.VisualStudio.vcprojectengine.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.VSHelp.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.VSHelp80.dll" />
+      <SuppressFromVsix Include="Newtonsoft.Json.dll" />
       <SuppressFromVsix Include="stdole.dll" />
+      <SuppressFromVsix Include="StreamJsonRpc.dll" />
       <SuppressFromVsix Include="System.Collections.Concurrent.dll" />
       <SuppressFromVsix Include="System.Collections.dll" />
       <SuppressFromVsix Include="System.Collections.Immutable.dll" />
@@ -393,6 +406,10 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       <SuppressFromVsix Include="Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Language.Intellisense.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Language.StandardClassification.dll" />
+      <SuppressFromVsix Include="Microsoft.VisualStudio.LanguageServer.Client.dll" />
+      <SuppressFromVsix Include="Microsoft.VisualStudio.LanguageServer.Protocol.dll" />
+      <SuppressFromVsix Include="Microsoft.VisualStudio.LanguageServer.Client.Preview.dll" />
+      <SuppressFromVsix Include="Microsoft.VisualStudio.LanguageServer.Protocol.Preview.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Package.LanguageService.14.0.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.QualityTools.Vsip.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Settings.14.0.dll" />
@@ -408,6 +425,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       <SuppressFromVsix Include="Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Shell.Interop.15.0.DesignTime.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Shell.Interop.15.3.DesignTime.dll" />
+      <SuppressFromVsix Include="Microsoft.VisualStudio.Shell.Interop.15.6.DesignTime.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Text.Data.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Text.Logic.dll" />
       <SuppressFromVsix Include="Microsoft.VisualStudio.Text.UI.dll" />
@@ -520,6 +538,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 
     <!-- Build and include output for any Project Reference items marked where IncludeOutputGroupsInVSIX is set -->
     <MSBuild Projects="@(_ProjectReferenceWithBuiltGroups)"
+             BuildInParallel="$(BuildInParallel)"
              Properties="%(_ProjectReferenceWithBuiltGroups.SetConfiguration); %(_ProjectReferenceWithBuiltGroups.SetPlatform)"
              Targets="%(_ProjectReferenceWithBuiltGroups.IncludeOutputGroupsInVSIX)"
              Condition="'%(_ProjectReferenceWithBuiltGroups.IncludeOutputGroupsInVSIX)' != ''"
@@ -532,6 +551,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     </CreateVsixSourceItemFromReferences>
 
     <MSBuild Projects="@(_ProjectReferenceWithoutBuiltGroups)"
+             BuildInParallel="$(BuildInParallel)"
              Properties="%(_ProjectReferenceWithoutBuiltGroups.SetConfiguration); %(_ProjectReferenceWithoutBuiltGroups.SetPlatform)"
              Targets="%(_ProjectReferenceWithoutBuiltGroups.IncludeOutputGroupsInVSIX)"
              Condition="'%(_ProjectReferenceWithoutBuiltGroups.IncludeOutputGroupsInVSIX)' != ''"
@@ -542,6 +562,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <!-- Build and include output for any Project Reference items marked where IncludeOutputGroupsInVSIXLocalOnly is set in the locally deployed vsix -->
     <!-- Unescape the targets because they may be escaped when added from the ExtensibilityProjectFlavor in VS. -->
     <MSBuild Projects="@(ProjectReferenceWithConfiguration)"
+             BuildInParallel="$(BuildInParallel)"
              Properties="%(ProjectReferenceWithConfiguration.SetConfiguration); %(ProjectReferenceWithConfiguration.SetPlatform)"
              Targets="$([MSBuild]::Unescape(%(ProjectReferenceWithConfiguration.IncludeOutputGroupsInVSIXLocalOnly)))"
              Condition="'%(ProjectReferenceWithConfiguration.IncludeOutputGroupsInVSIXLocalOnly)' != ''"
@@ -568,7 +589,8 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <ValidateVsixParts
         Condition="'$(BypassVsixValidation)' != 'true'"
         Manifest="$(IntermediateVsixManifest)"
-        Files="@(VSIXSourceItem)">
+        Files="@(VSIXSourceItem)"
+        ContentManifest="@(ContentManifest)">
     </ValidateVsixParts>
   </Target>
 
@@ -600,6 +622,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <CreateZipPackage
          SourceManifest="@(_VsixManifest)"
          ComponentManifest="@(ComponentManifest)"
+         ContentManifest="@(ContentManifest)"
          Files="@(VSIXSourceItem)"
          ZipPackage="$(TargetVsixContainer)"
          CompressionLevel="$(ZipPackageCompressionLevel)"
@@ -969,14 +992,14 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
   </PropertyGroup>
 
   <Target Name="GeneratePkgDef"
-          Inputs="$(TargetPath)"
+          Inputs="$(CreatePkgDefAssemblyToProcess)"
           Outputs="$(IntermediateOutputPath)$(TargetName).pkgdef"
           Condition="'$(GeneratePkgDefFile)'=='true'"
           DependsOnTargets="$(GeneratePkgDefDependsOn)">
 
     <Message Text="Creating intermediate PkgDef file." />
 
-    <CreatePkgDef AssemblyToProcess="$(TargetPath)"
+    <CreatePkgDef AssemblyToProcess="$(CreatePkgDefAssemblyToProcess)"
                   ProductVersion="$(TargetVSVersion)"
                   OutputFile="$(IntermediateOutputPath)$(TargetName).latest.pkgdef"
                   UseCodebase="$(UseCodebase)"
@@ -1331,11 +1354,13 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Message Text="$(MSBuildProjectName) -&gt; @(_ZipItemOutDir->'%(FullPath)')" />
 
   </Target>
-
+  
   <!--Provide support for setting type (BuildAction) to ZipProject/ZipItem from VS-->
   <ItemGroup>
     <AvailableItemName Include="VSTemplate"/>
     <AvailableItemName Include="ZipProject"/>
     <AvailableItemName Include="ZipItem"/>
+    <AvailableItemName Include="ContentManifest"/>
+    <AvailableItemName Include="ComponentManifest"/>
   </ItemGroup>
 </Project>

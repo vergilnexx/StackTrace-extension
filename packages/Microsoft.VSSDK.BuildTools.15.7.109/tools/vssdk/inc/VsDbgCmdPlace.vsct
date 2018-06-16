@@ -80,15 +80,15 @@
       <Menu guid="guidVSDebugGroup" id="IDM_BREAKPOINTS_WINDOW_COLUMN_LIST" priority="0x0900" type="Menu">
         <Parent guid="guidVSDebugGroup" id="IDG_BREAKPOINTS_WINDOW_COLUMNS"/>
         <Strings>
-          <ButtonText>Columns</ButtonText>
-          <CommandName>Columns</CommandName>
+          <ButtonText>Show Columns</ButtonText>
+          <CommandName>Show Columns</CommandName>
         </Strings>
       </Menu>
       <Menu guid="guidVSDebugGroup" id="IDM_BREAKPOINTS_WINDOW_SORT_LIST" priority="0xa00" type="Menu">
         <Parent guid="guidVSDebugGroup" id="IDG_BREAKPOINTS_WINDOW_SORT"/>
         <Strings>
           <ButtonText>Sort By:</ButtonText>
-          <CommandName>Sort by</CommandName>
+          <CommandName>S&amp;ort by</CommandName>
         </Strings>
       </Menu>
       <Menu guid="guidVSDebugGroup" id="IDM_MEMORY_WINDOWS" priority="0x0000" type="Menu">
@@ -106,6 +106,12 @@
         </Strings>
       </Menu>
       <!-- #endif         -->
+      <Menu guid="guidVSDebugGroup" id="IDM_BREAKPOINT_SUBMENU" priority="0x0500" type="Menu">
+        <Parent guid="guidVSDebugGroup" id="IDG_VS_CODEWIN_DEBUG_BP"/>
+        <Strings>
+          <ButtonText>&amp;Breakpoint</ButtonText>
+        </Strings>
+      </Menu>
       <Menu guid="guidVSDebugGroup" id="IDM_NEW_BREAKPOINT_SUBMENU" priority="0x0300" type="Menu">
         <Parent guid="guidVSDebugGroup" id="IDG_BREAKPOINTS"/>
         <Strings>
@@ -427,6 +433,9 @@
       <Group guid="guidVSDebugGroup" id="IDG_EXECUTION" priority="0x0300">
         <Parent guid="guidVSDebugGroup" id="IDM_DEBUG_MENU"/>
       </Group>
+      <Group guid="guidVSDebugGroup" id="IDG_INTELLITRACE_STEP" priority="0x0300">
+        <Parent guid="guidVSDebugGroup" id="IDM_DEBUG_MENU"/>
+      </Group>
       <Group guid="guidVSDebugGroup" id="IDG_SINGLEPROC_EXECUTION" priority="0x0310">
         <Parent guid="guidVSDebugGroup" id="IDM_DEBUG_MENU"/>
       </Group>
@@ -495,6 +504,14 @@
         <Parent guid="guidVSDebugGroup" id="IDM_OTHER_DEBUG_TARGETS_SUBMENU"/>
       </Group>
       <!--          -->
+      <!--         // Breakpoint submenu groups -->
+      <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINT_CONTEXT_ADD_DELETE" priority="0x0100">
+        <Parent guid="guidVSDebugGroup" id="IDM_BREAKPOINT_SUBMENU"/>
+      </Group>
+      <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINT_CONTEXT_MODIFY" priority="0x0300">
+        <Parent guid="guidVSDebugGroup" id="IDM_BREAKPOINT_SUBMENU"/>
+      </Group>
+      <!--          -->
       <!--         // New Breakpoint submenu groups -->
       <Group guid="guidVSDebugGroup" id="IDG_NEW_BREAKPOINT_SUBMENU" priority="0x0100">
         <Parent guid="guidVSDebugGroup" id="IDM_NEW_BREAKPOINT_SUBMENU"/>
@@ -522,6 +539,9 @@
       <!--         // All debugger context menus should be placed into this group. -->
       <Group guid="guidVSDebugGroup" id="IDG_DEBUGGER_CONTEXT_MENUS" priority="0x0100">
         <Parent guid="guidVSDebugGroup" id="IDM_DEBUGGER_CONTEXT_MENUS"/>
+      </Group>
+      <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINT_EXPORT" priority="0x0400">
+        <Parent guid="guidVSDebugGroup" id ="IDM_BREAKPOINT_SUBMENU"/>
       </Group>
       <Group guid="guidVSDebugGroup" id="IDG_BREAKPOINTS_WINDOW_SORT_NONE" priority="0x0100">
         <Parent guid="guidVSDebugGroup" id="IDM_BREAKPOINTS_WINDOW_SORT_LIST"/>
@@ -551,6 +571,9 @@
         <Parent guid="guidVSDebugGroup" id="IDM_DEBUG_TOOLBAR"/>
       </Group>
       <Group guid="guidVSDebugGroup" id="IDG_DEBUG_TOOLBAR_STEPPING" priority="0x0300">
+        <Parent guid="guidVSDebugGroup" id="IDM_DEBUG_TOOLBAR"/>
+      </Group>
+      <Group guid="guidVSDebugGroup" id="IDG_INTELLITRACE_TOOLBAR_STEP" priority="0x0301">
         <Parent guid="guidVSDebugGroup" id="IDM_DEBUG_TOOLBAR"/>
       </Group>
       <Group guid="guidVSDebugGroup" id="IDG_DEBUG_TOOLBAR_WATCH" priority="0x0500">
@@ -964,6 +987,10 @@
       <!--         // NOTE: this is for special commands that shouldn't be seen in the menus but need to be associated with the package -->
       <Group guid="guidVSDebugGroup" id="IDG_HIDDEN_COMMANDS" priority="0x300">
         <Parent guid="guidVSDebugGroup" id="IDM_HIDDEN_COMMANDS"/>
+      </Group>
+      <!--         // breakpoint menu in the editor context menu -->
+      <Group guid="guidVSDebugGroup" id="IDG_VS_CODEWIN_DEBUG_BP" priority="0x0250">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
       </Group>
       <!--  -->
     </Groups>
@@ -1622,6 +1649,9 @@
     <CommandPlacement guid="guidVSDebugCommand" id="cmdidShowExternalCode" priority="0x0400">
       <Parent guid="guidVSDebugGroup" id="IDG_CALLSTACK_OPTIONS"/>
     </CommandPlacement>
+    <CommandPlacement guid="guidVSDebugCommand" id="cmdidCallstackShowFrameType" priority="0x0480">
+      <Parent guid="guidVSDebugGroup" id="IDG_CALLSTACK_OPTIONS"/>
+    </CommandPlacement>
     <CommandPlacement guid="guidVSDebugCommand" id="cmdidCrossThreadCallStack" priority="0x0500">
       <Parent guid="guidVSDebugGroup" id="IDG_CALLSTACK_OPTIONS"/>
     </CommandPlacement>
@@ -2051,6 +2081,9 @@
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidQuickWatch" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_WATCH"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidVSStd97" id="cmdidShowNextStatement" priority="0x0100">
+      <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>
     </CommandPlacement>
     <CommandPlacement guid="guidVSStd97" id="cmdidRunToCursor" priority="0x0300">
       <Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_DEBUG_STEP"/>

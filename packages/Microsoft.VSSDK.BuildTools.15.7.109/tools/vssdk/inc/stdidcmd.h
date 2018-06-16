@@ -467,7 +467,8 @@ enum
 
 #define cmdidDebugContextWindow 327
 
-#define cmdidHelpSamples        328
+// Samples are no longer supported post d15
+// #define cmdidHelpSamples        328
 
 #define cmdidToolboxAddItem     329
 #define cmdidToolboxReset       330
@@ -2884,6 +2885,16 @@ enum
 #define cmdidFindAllRefPresetGroupingComboList     0x2A
 #define cmdidFindAllRefPresetGroupingComboGetList  0x2B
 #define cmdidFindAllRefLockWindow                  0x2C
+
+#define cmdidGetToolsAndFeatures            0x3C
+
+#define cmdidShowLineAnnotations            0x4C
+#define cmdidMoveToNextAnnotation           0x4D
+#define cmdidMoveToPreviousAnnotation       0x4E
+
+#define cmdidShowStructure                  0x4F
+
+#define cmdidHelpAccessibility              0x70
 
 //////////////////////////////////////////////////////////////////
 //

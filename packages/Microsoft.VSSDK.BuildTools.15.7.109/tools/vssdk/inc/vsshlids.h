@@ -811,7 +811,8 @@
 // Help Menu Groups
 #define IDG_VS_HELP_SUPPORT       0x016A
 #define IDG_VS_HELP_ABOUT         0x016B
-#define IDG_VS_HELP_SAMPLES       0x016C
+#define IDG_VS_HELP_ACCESSIBILITY 0x016D
+//#define IDG_VS_HELP_SAMPLES       0x016C
 
 
 // Standard Toolbar Groups
@@ -943,6 +944,15 @@
 #define IDG_VS_CODEWIN_SNIPPETS     0x02D2
 #define IDM_VS_CODEWIN_SNIPPET_ROOT 0x02D3
 #define IDG_VS_CODEWIN_SNIPPET_ROOT 0x02D4
+
+
+// Annotation flyout menu and groups
+#define IDG_VS_CODEWIN_ANNOTATION      0x02D5
+#define IDM_VS_CODEWIN_ANNOTATION_ROOT 0x02D6
+#define IDG_VS_CODEWIN_ANNOTATION_ROOT 0x02D7
+
+// IntelliTrace step menu groups.
+#define IDG_VS_CODEWIN_INTELLITRACE_STEP 0x02D8
 
 // Task List context menu groups
 #define IDG_VS_TASKLIST           0x01C7

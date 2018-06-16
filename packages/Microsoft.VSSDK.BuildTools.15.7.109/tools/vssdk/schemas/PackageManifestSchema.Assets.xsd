@@ -43,6 +43,14 @@
       </xs:annotation>
     </xs:attribute>
 
+    <xs:attribute name="TargetVersion" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          <!-- _locID_text="TargetVersion" _locComment="" -->The range of Visual Studio versions that this asset should be loaded for e.g. [15.0,16.0). Does not apply to assets of type ToolboxControl or VsPackage.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+
     <xs:anyAttribute processContents="lax" />
   </xs:complexType>
 </xs:schema>

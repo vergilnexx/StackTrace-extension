@@ -120,6 +120,7 @@
       <UsedCommand Condition="!Defined(No_CustomizeKeyboardCommand)" guid="guidVSStd97" id="cmdidCustomizeKeyboard"/>
       <UsedCommand Condition="!Defined(No_CustomizeToolbarsCommand)" guid="guidVSStd97" id="cmdidCustomizeToolbars"/>
 
+      <UsedCommand Condition="!Defined(No_ExtensionManagerCommand)" guid="guidVSStd15" id="cmdidGetToolsAndFeatures" />
       <UsedCommand Condition="!Defined(No_ExtensionManagerCommand)" guid="guidVSStd10" id="cmdidExtensionManager" />
       <UsedCommand Condition="!Defined(No_ShellForceGC)" guid="guidVSStd10" id="cmdidShellForceGC" />
 
@@ -1254,7 +1255,7 @@
 
     <!--   // Help Menu Commands -->
     <UsedCommand Condition="!Defined(No_ShellPkg_HelpAboutCommand)" guid="guidVSStd97" id="cmdidAbout"/>
-    <UsedCommand Condition="!Defined(No_ShellPkg_HelpSamplesCommand)" guid="guidVSStd97" id="cmdidHelpSamples"/>
+    <UsedCommand guid="guidVSStd15" id="cmdidHelpAccessibility" />
 
     <!--   // MenuDesigner Context Menu commands -->
     <UsedCommands Condition="Defined(ShellPkg_LegacyMenuDesigner)">

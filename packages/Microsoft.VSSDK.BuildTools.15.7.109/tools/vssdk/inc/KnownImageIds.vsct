@@ -142,6 +142,13 @@
       <IDSymbol name="AdRotator" value="131" />
       <IDSymbol name="AdvancedBreakpointDisabled" value="132" />
       <IDSymbol name="AdvancedBreakpointEnabled" value="133" />
+      <IDSymbol name="AdvancedProductionBreakpointAlert" value="3720" />
+      <IDSymbol name="AdvancedProductionBreakpointOff" value="3721" />
+      <IDSymbol name="AdvancedProductionBreakpointOK" value="3722" />
+      <IDSymbol name="AdvancedProductionBreakpointOn" value="3723" />
+      <IDSymbol name="AdvancedProductionTracepointAlert" value="3724" />
+      <IDSymbol name="AdvancedProductionTracepointOff" value="3725" />
+      <IDSymbol name="AdvancedProductionTracepointOn" value="3726" />
       <IDSymbol name="AdvancedTracePointDisabled" value="134" />
       <IDSymbol name="AdvancedTracePointEnabled" value="135" />
       <IDSymbol name="AdvancedView" value="136" />
@@ -265,6 +272,7 @@
       <IDSymbol name="AxisX" value="252" />
       <IDSymbol name="AxisY" value="253" />
       <IDSymbol name="AzureBehaviorsSDK" value="254" />
+      <IDSymbol name="AzureStack" value="3742" />
       <IDSymbol name="AzureWebSites" value="255" />
       <IDSymbol name="BackgroundColor" value="256" />
       <IDSymbol name="BackgroundWorker" value="257" />
@@ -407,6 +415,7 @@
       <IDSymbol name="CallTo" value="390" />
       <IDSymbol name="CallToMethod" value="391" />
       <IDSymbol name="Camera" value="392" />
+      <IDSymbol name="CameraDisabled" value="3719" />
       <IDSymbol name="CameraOrbit" value="393" />
       <IDSymbol name="Cancel" value="394" />
       <IDSymbol name="CancelBuild" value="395" />
@@ -2262,12 +2271,16 @@
       <IDSymbol name="OverlayAlert" value="2196" />
       <IDSymbol name="OverlayError" value="2197" />
       <IDSymbol name="OverlayExcluded" value="2198" />
+      <IDSymbol name="OverlayFriend" value="3709" />
+      <IDSymbol name="OverlayLock" value="3710" />
       <IDSymbol name="OverlayLoginDisabled" value="2199" />
       <IDSymbol name="OverlayNo" value="2200" />
       <IDSymbol name="OverlayOffline" value="2201" />
       <IDSymbol name="OverlayOnline" value="2202" />
       <IDSymbol name="OverlayPolicy" value="2203" />
       <IDSymbol name="OverlayProperty" value="2204" />
+      <IDSymbol name="OverlayProtected" value="3711" />
+      <IDSymbol name="OverlaySealed" value="3712" />
       <IDSymbol name="OverlayShortcut" value="2205" />
       <IDSymbol name="OverlayStatic" value="2206" />
       <IDSymbol name="OverlayTimelineMarkBlack" value="3657" />
@@ -2500,6 +2513,19 @@
       <IDSymbol name="ProcessModel" value="2419" />
       <IDSymbol name="ProcessOk" value="2420" />
       <IDSymbol name="Processor" value="2421" />
+      <IDSymbol name="ProductionBreakpointAlert" value="3713" />
+      <IDSymbol name="ProductionBreakpointDashed" value="3714" />
+      <IDSymbol name="ProductionBreakpointError" value="3715" />
+      <IDSymbol name="ProductionBreakpointOff" value="3716" />
+      <IDSymbol name="ProductionBreakpointOK" value="3727" />
+      <IDSymbol name="ProductionBreakpointOn" value="3717" />
+      <IDSymbol name="ProductionBreakpointWarning" value="3718" />
+      <IDSymbol name="ProductionTracepointAlert" value="3728" />
+      <IDSymbol name="ProductionTracepointDashed" value="3729" />
+      <IDSymbol name="ProductionTracepointError" value="3730" />
+      <IDSymbol name="ProductionTracepointOff" value="3731" />
+      <IDSymbol name="ProductionTracepointOn" value="3732" />
+      <IDSymbol name="ProductionTracepointWarning" value="3733" />
       <IDSymbol name="ProgressBar" value="2422" />
       <IDSymbol name="ProgressivePopUp" value="2423" />
       <IDSymbol name="ProgressiveSort" value="2424" />
@@ -3059,6 +3085,8 @@
       <IDSymbol name="StatusWarningOutline" value="2957" />
       <IDSymbol name="StencilTest" value="2958" />
       <IDSymbol name="Step" value="2959" />
+      <IDSymbol name="StepBackward" value="3740" />
+      <IDSymbol name="StepForward" value="3741" />
       <IDSymbol name="StepInto" value="2960" />
       <IDSymbol name="StepLineChart" value="2961" />
       <IDSymbol name="StepOut" value="2962" />
@@ -3194,6 +3222,12 @@
       <IDSymbol name="TestGroup" value="3085" />
       <IDSymbol name="TestList" value="3086" />
       <IDSymbol name="TestManager" value="3087" />
+      <IDSymbol name="TestMethodExcluded" value="3734" />
+      <IDSymbol name="TestMethodExcludedStale" value="3739" />
+      <IDSymbol name="TestMethodFailing" value="3735" />
+      <IDSymbol name="TestMethodNotCovered" value="3736" />
+      <IDSymbol name="TestMethodPassing" value="3737" />
+      <IDSymbol name="TestMethodStale" value="3738" />
       <IDSymbol name="TestNotCovered" value="3698" />
       <IDSymbol name="TestNotCoveredStale" value="3708" />
       <IDSymbol name="TestNotInList" value="3088" />

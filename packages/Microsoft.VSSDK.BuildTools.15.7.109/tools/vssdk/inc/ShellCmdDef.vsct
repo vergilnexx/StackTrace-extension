@@ -371,6 +371,26 @@
           <ButtonText>&amp;Paste</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidVSStd15" id="cmdidShowLineAnnotations" priority="0x0000" type="Button">
+        <Strings>
+          <ButtonText>&amp;Show Line Annotations</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidVSStd15" id="cmdidMoveToNextAnnotation" priority="0x0010" type="Button">
+        <Strings>
+          <ButtonText>Move To &amp;Next Annotation</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidVSStd15" id="cmdidMoveToPreviousAnnotation" priority="0x0020" type="Button">
+        <Strings>
+          <ButtonText>Move To &amp;Previous Annotation</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidVSStd15" id="cmdidShowStructure" priority="0x0020" type="Button">
+        <Strings>
+          <ButtonText>Show S&amp;tructure</ButtonText>
+        </Strings>
+      </Button>
       <Button guid="guidVSStd97" id="cmdidPasteNextTBXCBItem" priority="0x0000" type="Button">
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>DefaultInvisible</CommandFlag>
@@ -1857,10 +1877,11 @@
           <ButtonText>&amp;About...</ButtonText>
         </Strings>
       </Button>
-
-      <Button guid="guidVSStd97" id="cmdidHelpSamples" priority="0x0000" type="Button">
+      <Button guid="guidVSStd15" id="cmdidHelpAccessibility" priority="0x0000" type="Button">
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
         <Strings>
-          <ButtonText>&amp;Samples</ButtonText>
+          <ButtonText>&amp;Keyboard Accessibility</ButtonText>
         </Strings>
       </Button>
 
@@ -2893,11 +2914,12 @@
       </Button>
       <!-- -->
       <Button guid="guidVSStd97" id="cmdidDefineSubset" priority="0x0000" type="Button">
+        <Icon guid="ImageCatalogGuid" id="Ellipsis"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
         <CommandFlag>DynamicVisibility</CommandFlag>
-        <CommandFlag>TextOnly</CommandFlag>
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
-          <ButtonText>&amp;...</ButtonText>
+          <ButtonText>Edit Custom Component Set</ButtonText>
           <MenuText>Edit Custom Component Set...</MenuText>
           <ToolTipText>Edit Custom Component Set</ToolTipText>
           <CommandName>Edit Custom Component Set</CommandName>
@@ -2971,9 +2993,10 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
-          <ButtonText>Class View New Fol&amp;der</ButtonText>
-          <MenuText>New Fol&amp;der</MenuText>
-          <CanonicalName>NewClassViewFolder</CanonicalName>
+          <ButtonText>New Fol&amp;der</ButtonText>
+          <CommandName>Class View New Folder</CommandName>
+          <CanonicalName>Class View New Folder</CanonicalName>
+          <LocCanonicalName>Class View New Folder</LocCanonicalName>
         </Strings>
       </Button>
       <Button guid="guidVSStd2K" id="cmdidCVShowProjectReferences" priority="0x0000" type="Button">
@@ -3030,9 +3053,11 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
-          <ButtonText>Class View &amp;Back</ButtonText>
-          <MenuText>&amp;Back</MenuText>
+          <ButtonText>&amp;Back</ButtonText>
           <ToolTipText>Back</ToolTipText>
+          <CommandName>Class View Back</CommandName>
+          <CanonicalName>Class View Back</CanonicalName>
+          <LocCanonicalName>Class View Back</LocCanonicalName>
         </Strings>
       </Button>
       <Button guid="guidVSStd97" id="cmdidOBForward" priority="0x0000" type="Button">
@@ -3052,9 +3077,11 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
-          <ButtonText>Class View &amp;Forward</ButtonText>
-          <MenuText>&amp;Forward</MenuText>
+          <ButtonText>&amp;Forward</ButtonText>
           <ToolTipText>Forward</ToolTipText>
+          <CommandName>Class View Forward</CommandName>
+          <CanonicalName>Class View Forward</CanonicalName>
+          <LocCanonicalName>Class View Forward</LocCanonicalName>
         </Strings>
       </Button>
       <Button guid="guidVSStd97" id="cmdidExpandAll" priority="0x0000" type="Button">
@@ -3104,7 +3131,7 @@
         <CommandFlag>NoShowOnMenuController</CommandFlag>
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
-          <ButtonText>Class View Settings</ButtonText>
+           <ButtonText>Class View Settings</ButtonText>
           <MenuText>Class View Settings</MenuText>
         </Strings>
       </Button>
@@ -3510,9 +3537,10 @@
         <CommandFlag>CommandWellOnly</CommandFlag>
         <CommandFlag>TextMenuCtrlUseMenu</CommandFlag>
         <Strings>
-          <ButtonText>Class View Search</ButtonText>
-          <MenuText>Search</MenuText>
-          <ToolTipText>Search</ToolTipText>
+          <ButtonText>Search</ButtonText>
+          <CommandName>Class View Search</CommandName>
+          <CanonicalName>Class View Search</CanonicalName>
+          <LocCanonicalName>Class View Search</LocCanonicalName>
         </Strings>
       </Button>
       <Button guid="guidVSStd2K" id="cmdidOBSearchCmd" priority="0x0000" type="Button">
@@ -3538,7 +3566,7 @@
         <Strings>
           <ButtonText>Class View Search</ButtonText>
           <MenuText>Search</MenuText>
-          <ToolTipText>Search</ToolTipText>
+          <ToolTipText>Search</ToolTipText>          
         </Strings>
       </Button>
       <Button guid="guidVSStd2K" id="cmdidOBGoToSearchCmd" priority="0x0000" type="Button">
@@ -3576,9 +3604,10 @@
         <CommandFlag>DefaultDisabled</CommandFlag>
         <CommandFlag>CommandWellOnly</CommandFlag>
         <Strings>
-          <ButtonText>Class View Clear Search</ButtonText>
-          <MenuText>Clear Search</MenuText>
-          <ToolTipText>Clear Search</ToolTipText>
+          <ButtonText>Clear Search</ButtonText>
+          <CommandName>Class View Clear Search</CommandName>
+          <CanonicalName>Class View Clear Search</CanonicalName>
+          <LocCanonicalName>Class View Clear Search</LocCanonicalName>
         </Strings>
       </Button>
       <!-- -->
@@ -5990,7 +6019,7 @@
         <CommandFlag>FilterKeys</CommandFlag>
         <CommandFlag>StretchHorizontally</CommandFlag>
         <Strings>
-          <ButtonText>Class View Search</ButtonText>
+          <ButtonText>Search</ButtonText>
         </Strings>
       </Combo>
       <Combo guid="guidVSStd97" id="cmdidSubsetCombo" priority="0x0000" type="DropDownCombo" defaultWidth="260" idCommandList="cmdidSubsetGetList">

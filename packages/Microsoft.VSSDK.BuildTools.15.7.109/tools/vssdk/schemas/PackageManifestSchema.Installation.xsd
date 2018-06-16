@@ -60,6 +60,20 @@
         </xs:documentation>
       </xs:annotation>
     </xs:attribute>
+
+    <xs:attribute name="PartialManifestType" use="optional">
+      <xs:annotation>
+        <xs:documentation>
+          <!-- _locID_text="Scope" _locComment="" -->Indicates how the embedded catalog manifest should be applied.
+        </xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Default"/>
+          <xs:enumeration value="Experiment"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
 
   <xs:complexType name="InstallationTarget">
