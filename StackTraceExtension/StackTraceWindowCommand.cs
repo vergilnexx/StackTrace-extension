@@ -129,10 +129,10 @@ namespace StackTraceExtension
                     var type = item.Item2;
                     switch (type)
                     {
+                        case InformationType.Method: // TODO: as hyperlink
                         case InformationType.Text:
                             stackTextBlock.Inlines.Add(text);
-                            break;
-                        case InformationType.Method:
+                            break;                        
                         case InformationType.File:
                             var hyperlink = new System.Windows.Documents.Hyperlink
                             {
@@ -150,57 +150,62 @@ namespace StackTraceExtension
 
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            var link = sender as System.Windows.Documents.Hyperlink;
-            var type = link.DataContext as InformationType?;
-
-            var fileName = string.Empty;
-            var lineNumber = 0;
-            var columnNumber = 0;
-
-            var linkText = ((System.Windows.Documents.Run)link.Inlines.FirstInline).Text;
-            var parser = Factory.GetParser();
-            switch (type)
+            try
             {
-                case InformationType.File:
-                    var solution = ServiceProvider.GetService(typeof(SVsSolution)) as IVsSolution;
-                    string solutionPath, solutionFile, suoFile;                    
-                    solution.GetSolutionInfo(out solutionPath, out solutionFile, out suoFile);
-                    if(string.IsNullOrEmpty(solutionPath))
-                    {
-                        return;
-                    }
-                    var tempString = solutionPath;
-                    tempString = tempString.Remove(tempString.Length - 1);
-                    tempString = tempString.Substring(tempString.LastIndexOf("\\") + 1, tempString.Length - tempString.LastIndexOf("\\") - 1);
+                var link = sender as System.Windows.Documents.Hyperlink;
+                var type = link.DataContext as InformationType?;
 
-                    var relationPath = linkText.Remove(0, linkText.LastIndexOf(tempString));
-                    relationPath = relationPath.Replace(tempString, string.Empty);
-                    relationPath = relationPath.Remove(0, 1); // delete slash
+                var fileName = string.Empty;
+                var lineNumber = 0;
+                var columnNumber = 0;
 
-                    var lineNumberString = parser.GetLineNumberString(relationPath);
-                    var startIndexPrefixLineNumberRelationPath = relationPath.LastIndexOf(lineNumberString);
-                    relationPath = relationPath.Remove(startIndexPrefixLineNumberRelationPath, relationPath.Length - startIndexPrefixLineNumberRelationPath); // delete line number text
+                var linkText = ((System.Windows.Documents.Run)link.Inlines.FirstInline).Text;
+                var parser = Factory.GetParser();
+                switch (type)
+                {
+                    case InformationType.File:
+                        var solution = ServiceProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+                        string solutionPath, solutionFile, suoFile;
+                        solution.GetSolutionInfo(out solutionPath, out solutionFile, out suoFile);
+                        if (string.IsNullOrEmpty(solutionPath))
+                        {
+                            return;
+                        }
+                        var tempString = solutionPath;
+                        tempString = tempString.Remove(tempString.Length - 1);
+                        tempString = tempString.Substring(tempString.LastIndexOf("\\") + 1, tempString.Length - tempString.LastIndexOf("\\") - 1);
 
-                    fileName = solutionPath + relationPath;
-                    lineNumber = parser.GetLineNumber(linkText);
-                    columnNumber = 0;
+                        var relationPath = linkText.Remove(0, linkText.LastIndexOf("\\" + tempString + "\\"));
+                        relationPath = relationPath.Replace("\\" + tempString + "\\", string.Empty);
 
-                    NavigateTo(fileName, lineNumber, columnNumber);
-                    break;
-                case InformationType.Method:
-                    linkText = linkText.Replace("at ", string.Empty);   // delete en prefix
-                    linkText = linkText.Replace("в ", string.Empty);    // delete ru prefix
-                    linkText = linkText.Remove(linkText.Length - 1);    // delete postfix
+                        var lineNumberString = parser.GetLineNumberString(relationPath);
+                        var startIndexPrefixLineNumberRelationPath = relationPath.LastIndexOf(lineNumberString);
+                        relationPath = relationPath.Remove(startIndexPrefixLineNumberRelationPath, relationPath.Length - startIndexPrefixLineNumberRelationPath); // delete line number text
 
-                    var projects = ProjectUtilities.GetProjectsOfCurrentSelections();
-                    Factory.GetBackgroundScanner().StopIfRunning(blockUntilDone: true);
+                        fileName = solutionPath + relationPath;
+                        lineNumber = parser.GetLineNumber(linkText);
+                        columnNumber = 0;
 
-                    Factory.GetBackgroundScanner().Stopped += (source, arg) => NavigateTo(fileName, lineNumber, columnNumber);
+                        NavigateTo(fileName, lineNumber, columnNumber);
+                        break;
+                    case InformationType.Method:
+                        linkText = linkText.Replace("at ", string.Empty);   // delete en prefix
+                        linkText = linkText.Replace("в ", string.Empty);    // delete ru prefix
+                        linkText = linkText.Remove(linkText.Length - 1);    // delete postfix
 
-                    Factory.GetBackgroundScanner().Start(projects, "FirstToolWindowPackage");
+                        var projects = ProjectUtilities.GetProjectsOfCurrentSelections();
+                        Factory.GetBackgroundScanner().StopIfRunning(blockUntilDone: true);
 
-                    break;
-            }            
+                        Factory.GetBackgroundScanner().Stopped += (source, arg) => NavigateTo(fileName, lineNumber, columnNumber);
+
+                        Factory.GetBackgroundScanner().Start(projects, "FirstToolWindowPackage");
+
+                        break;
+                }
+            }
+            catch(Exception)
+            {
+            }
         }
 
 
